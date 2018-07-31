@@ -1,0 +1,15 @@
+<div class="container">
+  <% if @tasks.empty? %>
+    <span class="text-warning">There are no tasks!</span>
+  <% else %>
+    <h3>Tasks in progress</h3>
+    <% @tasks.each do |task| %>
+        <%= render partial: "task", locals:{ task: task } %>
+      <% end %>
+    <hr/>
+    <h3>Completed tasks</h3>
+    <% @completed_tasks.each do |task| %>
+      <%= render partial: "task", locals:{ task: task } %>
+    <% end %>
+<% end %>
+</div>

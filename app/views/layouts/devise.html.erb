@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TodoList</title>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+  </head>
+  <body>
+    <div class="row-fluid">
+      <div class="span10 offset1">
+        <div class="hero-unit text-center">
+          <h1>ToDo-List</h1>
+          <small>This is my third apps</small><br>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span4 offset4">
+          <%= yield%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
