@@ -12,7 +12,6 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'simple_form'
 gem 'devise'
 gem 'bootstrap-datepicker-rails'
-gem 'mailcatcher'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
