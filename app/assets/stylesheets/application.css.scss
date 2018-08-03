@@ -25,3 +25,9 @@
     tarnsition: opacity 0.5s else;
   }
 }
+.deleteAction{
+  &:hover{
+    background-color: #ccc;
+    text-decoration: underline;
+  }
+  }

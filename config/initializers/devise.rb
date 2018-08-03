@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '98a5a0d682ff7babb320e3cc3b1503d1c79873b4f750633dd0ba6f31b512d79b8f89bd9c0e18adafdcb4fa3bfcc8c20bdeb8391c5c70e5af36cb196774636c4c'
+  config.secret_key = '98a5a0d682ff7babb320e3cc3b1503d1c79873b4f750633dd0ba6f31b512d79b8f89bd9c0e18adafdcb4fa3bfcc8c20bdeb8391c5c70e5af36cb196774636c4c'
   
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -120,7 +120,7 @@ Devise.setup do |config|
   # config.send_email_changed_notification = false
 
   # Send a notification email when the user's password is changed.
-  # config.send_password_change_notification = false
+  config.send_password_change_notification = true
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
