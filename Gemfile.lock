@@ -107,8 +107,11 @@ GEM
     puma (3.12.0)
     rack (2.0.5)
 <<<<<<< HEAD
+<<<<<<< HEAD
     rack-test (1.1.0)
 =======
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
     rack-test (1.0.0)
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
       rack (>= 1.0, < 3)

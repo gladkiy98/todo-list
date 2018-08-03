@@ -5,8 +5,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/todo-list.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/todo-list.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
@@ -15,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/tasks.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/tasks.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tasks/_task.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tasks/_task.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
@@ -22,6 +26,9 @@
       <change beforePath="$PROJECT_DIR$/config/initializers/devise.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/migrate/20180722222146_devise_create_users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20180722222146_devise_create_users.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/views/tasks/_task.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tasks/_task.html.erb" afterDir="false" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
       <change beforePath="$PROJECT_DIR$/app/views/tasks/_task.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tasks/_task.html.erb" afterDir="false" />
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
@@ -105,11 +112,16 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.36" value="2" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.45" value="1" />
           <entry key="project.opened" value="4" />
+=======
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="1" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
           <entry key="project.open.time.4" value="1" />
           <entry key="project.opened" value="1" />
@@ -121,8 +133,13 @@
           <entry key="erb" value="18" />
           <entry key="js" value="81" />
 <<<<<<< HEAD
+<<<<<<< HEAD
           <entry key="rb" value="113" />
           <entry key="scss" value="31" />
+=======
+          <entry key="rb" value="73" />
+          <entry key="scss" value="30" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
           <entry key="rb" value="73" />
           <entry key="scss" value="30" />
@@ -134,8 +151,13 @@
           <entry key="JavaScript" value="81" />
           <entry key="RHTML" value="18" />
 <<<<<<< HEAD
+<<<<<<< HEAD
           <entry key="Ruby" value="113" />
           <entry key="SCSS" value="31" />
+=======
+          <entry key="Ruby" value="73" />
+          <entry key="SCSS" value="30" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
           <entry key="Ruby" value="73" />
           <entry key="SCSS" value="30" />
@@ -145,9 +167,14 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <entry key="Gemfile" value="1" />
           <entry key="erb" value="6" />
           <entry key="rb" value="12" />
+=======
+          <entry key="erb" value="5" />
+          <entry key="rb" value="3" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
           <entry key="erb" value="5" />
           <entry key="rb" value="3" />
@@ -158,8 +185,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <entry key="RHTML" value="6" />
           <entry key="Ruby" value="13" />
+=======
+          <entry key="RHTML" value="5" />
+          <entry key="Ruby" value="3" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
           <entry key="RHTML" value="5" />
           <entry key="Ruby" value="3" />
@@ -176,15 +208,21 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
 =======
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
               <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+<<<<<<< HEAD
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
+=======
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
             </state>
           </provider>
@@ -192,11 +230,14 @@
       </file>
       <file pinned="false" current-in-tab="true">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/db/migrate/20180722222146_devise_create_users.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
               <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
 =======
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/scaffolds.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
@@ -219,6 +260,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+<<<<<<< HEAD
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
+=======
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
             </state>
           </provider>
@@ -353,6 +397,7 @@
             <path>
               <item name="work-list" type="b2602c69:ProjectViewProjectNode" />
               <item name="work-list" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
             </path>
             <path>
               <item name="work-list" type="b2602c69:ProjectViewProjectNode" />
@@ -371,6 +416,8 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
             </path>
             <path>
               <item name="work-list" type="b2602c69:ProjectViewProjectNode" />
@@ -388,8 +435,24 @@
             <path>
               <item name="work-list" type="b2602c69:ProjectViewProjectNode" />
               <item name="work-list" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="db" type="462c0819:PsiDirectoryNode" />
               <item name="migrate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="work-list" type="b2602c69:ProjectViewProjectNode" />
+              <item name="work-list" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="work-list" type="b2602c69:ProjectViewProjectNode" />
+              <item name="work-list" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="work-list" type="b2602c69:ProjectViewProjectNode" />
@@ -409,7 +472,10 @@
         </subPane>
       </pane>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
       <pane id="RailsProjectView" />
@@ -563,10 +629,14 @@
       <workItem from="1532976315860" duration="89000" />
       <workItem from="1533022757806" duration="5842000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1533206016070" duration="8027000" />
       <workItem from="1533229997413" duration="104000" />
       <workItem from="1533234753898" duration="1979000" />
       <workItem from="1533290379390" duration="1450000" />
+=======
+      <workItem from="1533206016070" duration="7521000" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
       <workItem from="1533206016070" duration="7521000" />
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
@@ -575,7 +645,11 @@
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="134927000" />
+=======
+    <option name="totallyTimeSpent" value="130888000" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
     <option name="totallyTimeSpent" value="130888000" />
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
@@ -586,7 +660,11 @@
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.5007899" side_tool="true" weight="0.24942264" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49921012" visible="true" weight="0.28092578" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49921012" visible="true" weight="0.26656026" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
 =======
       <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49921012" visible="true" weight="0.26656026" />
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
@@ -640,7 +718,10 @@
   </component>
   <component name="editorHistoryManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
     <entry file="file://$PROJECT_DIR$/app/models/install.rb" />
     <entry file="file://$PROJECT_DIR$/app/views/users/confirmations/new.html.erb">
       <provider selected="true" editor-type-id="text-editor" />
@@ -692,6 +773,9 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
+=======
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -795,6 +879,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/tasks/new.js.erb" />
     <entry file="file://$PROJECT_DIR$/app/views/tasks/new.html.erb">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
@@ -861,6 +946,8 @@
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/tasks.js">
 =======
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
@@ -875,11 +962,14 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/pages.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
 =======
+=======
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/channels/tasks.js" />
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/pages.js.coffee">
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
@@ -923,6 +1013,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.1/gems/actionpack-5.2.0/lib/action_controller/metal.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -943,12 +1034,16 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+=======
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/rubymine.jar!/resources/html5-schema/html5/phrase.rnc">
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="195">
+          <caret line="345" column="16" selection-start-line="345" selection-start-column="16" selection-end-line="345" selection-end-column="16" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/views/users/sessions/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -970,18 +1065,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/tasks.js">
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.1/gems/actionpack-5.2.0/lib/action_controller/metal.rb">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="150">
           <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+=======
+        <state relative-caret-position="195">
+          <caret line="212" column="4" selection-start-line="212" selection-start-column="4" selection-end-line="212" selection-end-column="4" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tasks_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="230">
           <caret line="34" column="52" lean-forward="true" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
         </state>
@@ -1019,6 +1126,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+=======
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/tasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tasks_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="34" column="52" lean-forward="true" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/tasks.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tasks/_task.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
@@ -1040,6 +1193,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+<<<<<<< HEAD
+>>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
+=======
 >>>>>>> 15aa8153ae998faeee6825099b1ee7589dc6f645
         </state>
       </provider>
