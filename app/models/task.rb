@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
-  validates :title, :description, :priority, presence:true;
-  #validates :future_completed_date, presence:true;
+  validates :title, :description, :priority, presence: true
+  validates :completed_to, presence: true
+  validate :future_completed_date  
   PRIORITIES = [
       ['Later', 1],
       ['Next', 2],
@@ -13,9 +14,10 @@ class Task < ApplicationRecord
   end
   private
 
-  def future_completed_date
-    if !completed.blank? && completed > Date.today
-      self.errors.add(:completed, "can't be in the future")
-    end
+  def future_completed_date 
+      if completed_to && completed_to < Date.today
+        self.errors.add(:completed_to, "can't be in the future")
+      end  
+    
   end
 end
