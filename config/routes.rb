@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
+  root 'tasks#index'
+  resources :tasks do
+
+    put :completed, on: :member
+
+  end
+  post 'create', to: 'tasks#create', as: :task_create
 end
