@@ -1,15 +1,34 @@
-<div class="container">
+<div class="row text-center">
+  <div class="text-center hero-head h1">
+     <h1>todos</h1>
+  </div>
+</div>
+
+<div class="row content-task">
   <% if @tasks.empty? %>
     <span class="text-warning">There are no tasks!</span>
   <% else %>
-    <h3>Tasks in progress</h3>
+    <div class="row pad-left-57 col-md-12 row-text">
+      <input type="text" name="massage" placeholder="What needs to be done?" class="col-md-12 border-0">
+    </div>
     <% @tasks.each do |task| %>
         <%= render partial: "task", locals:{ task: task } %>
-      <% end %>
-    <hr/>
-    <h3>Completed tasks</h3>
-    <% @completed_tasks.each do |task| %>
-      <%= render partial: "task", locals:{ task: task } %>
-    <% end %>
-<% end %>
+    <% end %> 
+
+    <div class="row w-100 text-center pad-top-8">
+      <div class="col-md-3">
+        <p class="text-left">items left</p>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-sm btn-outline-secondary">All</button>
+        <button class="btn btn-sm btn-outline-secondary">Active</button>
+        <button class="btn btn-sm btn-outline-secondary">Completed</button>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-sm btn-outline-secondary">Clear completed</button>
+      </div>
+    </div>
+  <% end %>
 </div>
+<div class="line1"></div>
+<div class="line2"></div>

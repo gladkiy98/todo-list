@@ -1,8 +1,8 @@
-<div class="modal-header">
-  <h1>New Task</h1>
+<div class="modal-header text-center">
+  <h2>New Task</h2>
 </div>
 <%= simple_form_for @task, class: 'clearfix' do |f| %>
-  <div class="modal-body">
+  <div class="modal-body text-center">
 
     <%= render partial: "form", locals:{ f: f } %>
 
