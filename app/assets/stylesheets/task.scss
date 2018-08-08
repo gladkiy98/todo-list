@@ -1,0 +1,142 @@
+body {
+  background-color: #e4e4e4;  
+}
+
+.content-task {
+  position: relative;
+  width: 700px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0px 2px 3px 1px #b1b1b1;
+  padding: 17px;
+}
+
+.completed_true {color: #666666; text-decoration: line-through}
+
+.task {
+  margin-bottom: 1em;
+  cursor: pointer;
+  .action {opacity: 0;}
+  &:hover .action{
+    opacity: 1;
+    tarnsition: opacity 0.5s else;
+  }
+}
+
+.deleteAction {
+  &:hover {
+    background-color: #ccc;
+    text-decoration: underline;
+  }
+  }
+
+.hero-head {
+	margin: 40px;
+}
+
+.content1 {
+  position: relative;
+  background-color: white;
+  height: 7px;
+  margin-left: 204px;
+  margin-right: 204px;
+  top: 309px;
+  box-shadow: 0px 2px 3px 1px #b1b1b1;
+}
+
+.content2 {
+  position: relative;
+  background-color: white;
+  height: 7px;
+  margin-left: 208px;
+  margin-right: 208px;
+  top: 311px;
+  box-shadow: 0px 2px 3px 1px #b1b1b1;
+}
+
+.line1 {
+  position: relative;
+  top: 2px;
+  width: 690px;
+  height: 6px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0px 2px 3px 0px #b1b1b1;
+}
+
+.line2 {
+  position: relative;
+  width: 680px;
+  top: 4px;
+  height: 6px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0px 6px 7px 1px #b1b1b1;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+label::before {
+  display: inline-block;
+  content: '';
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-image: url(circle.svg);
+  vertical-align: middle;
+  margin-right: 26px;
+  transition: 0.3s;
+}
+
+input[type=checkbox]:checked + label::before {
+  border-radius: 50%;
+  background-image: url(circle_ok.svg);
+  width: 32px;
+  height: 32px;
+  text-align: center;
+}
+
+input[type=text] {
+  background-image: url(arrow_down.svg);
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  padding-left: 58px;
+}
+
+.line-text {
+  width: 100%;
+  background-color: #e6e6e6;
+  height: 1px;
+}
+
+.line-text1 {
+  width: 100%;
+  background-color: #c3c3c3;
+  height: 2px;
+}
+
+.pad-top-8 {
+  padding-top: 8px;
+}
+
+.pad-left-26 {
+  padding-left: 26px;
+}
+
+.row-task {
+  border-bottom: 1px solid;
+  margin-left: -1px;
+  border-bottom-color: #e6e6e6;
+  width: 100%;
+}
+
+.row-text {
+  border-bottom: 2px solid;
+  margin-left: -1px;
+  margin-bottom: 12px;
+  border-bottom-color: #e6e6e6;
+  width: 100%;
+}

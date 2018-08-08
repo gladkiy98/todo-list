@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - spec/**/*
+  Exclude:
+    - config/initializers/devise.rb
+
+inherit_from: .rubocop_todo.yml
