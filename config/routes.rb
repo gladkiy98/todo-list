@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'tasks#index'
   resources :tasks do
     put :completed, on: :member
+    put :active, on: :member
   end
   post 'create', to: 'tasks#create', as: :task_create
 end

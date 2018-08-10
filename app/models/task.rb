@@ -1,17 +1,9 @@
 class Task < ApplicationRecord
-  validates :title, :description, :priority, presence: true
+  enum status: %i[active completed]
+
+  validates :title, :description, presence: true
   validates :completed_to, presence: true
   validate :future_completed_date
-  PRIORITIES = [
-    ['Later', 1],
-    ['Next', 2],
-    ['Now', 3]
-  ].freeze
-
-  def complete!
-    self.completed = true
-    save
-  end
 
   private
 

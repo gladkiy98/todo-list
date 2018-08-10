@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.where(completed: 0).order('priority DESC')
-    @completed_tasks = Task.where(completed: 1).order('updated_at')
+    @tasks = Task.all
   end
 
   def new
@@ -18,8 +17,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
-    @task.update_attributes task_params
+    task.update_attributes(task_params)
     if @task.errors.empty?
       redirect_to root_path
     else
@@ -28,22 +26,33 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find params[:id]
+    task
   end
 
   def show
-    render text: 'Page not found', status: 404 unless @task == Task.where(id: params[:id]).first
+    render text: 'Page not found', status: 404 unless task
   end
 
   def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
+    task.destroy
     render json: { success: true }
+  end
+
+  def active
+    task.update_attributes(status: 0, completed_at: nil)
+  end
+
+  def completed
+    task.update_attributes(completed_at: Time.now, status: 1)
   end
 
   private
 
   def task_params
-    params.require(:task).permit(%i[title description priority completed_to completed])
+    params.require(:task).permit(%i[title description completed_to])
+  end
+
+  def task
+    Task.find(params[:id])
   end
 end
