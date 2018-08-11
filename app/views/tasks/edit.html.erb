@@ -3,9 +3,7 @@
 </div>
 <%= simple_form_for @task, class: 'clearfix' do |f| %>
   <div class="modal-body text-center">
-
     <%= render partial: "form", locals:{ f: f } %>
-    <%= f.input :completed %>
   </div>
   <div class="modal-footer">
     <%= f.submit 'Save', class: 'btn btn-primary' %>
