@@ -1,9 +1,9 @@
 class Task < ApplicationRecord
   enum status: %i[active completed]
 
-  validates :title, :description, presence: true
-  validates :completed_to, presence: true
-  validate :future_completed_date
+  validates :title, presence: true
+  # validates :completed_to, presence: true
+  # validate :future_completed_date
 
   private
 

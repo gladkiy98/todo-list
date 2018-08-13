@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     if @task.errors.empty?
       redirect_to root_path
     else
-      render 'new'
+      render text: 'errors'
     end
   end
 
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(%i[title description completed_to])
+    params.require(:task).permit(%i[title])
   end
 
   def task

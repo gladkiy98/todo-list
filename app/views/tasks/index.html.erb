@@ -9,8 +9,10 @@
     <span class="text-warning">There are no tasks!</span>
   <% else %>
     <div class="row col-md-12 row-text">
-      <input type="text" name="massage" placeholder="What needs to be done?" class="col-md-12 border-0">
+      <%= form_for(@tasks.new, method: :post) do |f| %>
+      <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'col-md-12 border-0' %>
     </div>
+    <% end %>
     <% @tasks.each do |task| %>
         <%= render partial: "task", locals:{ task: task } %>
     <% end %> 
@@ -32,3 +34,6 @@
 </div>
 <div class="line1"></div>
 <div class="line2"></div>
+    
+      <input type="text" name="massage" placeholder="What needs to be done?" class="col-md-12 border-0">
+
