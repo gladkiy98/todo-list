@@ -3,16 +3,11 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def new
-    @task = Task.new
-  end
-
   def create
-    @task = Task.create(task_params)
-    if @task.errors.empty?
-      redirect_to root_path
-    else
-      render text: 'errors'
+    Task.create(task_params)
+    @tasks = Task.all.order('created_at DESC')
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -23,14 +18,6 @@ class TasksController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def edit
-    task
-  end
-
-  def show
-    render text: 'Page not found', status: 404 unless task
   end
 
   def destroy
@@ -49,7 +36,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(%i[title])
+    params.require(:task).permit(%i[title completed_to])
   end
 
   def task

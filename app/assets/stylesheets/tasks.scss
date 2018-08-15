@@ -62,11 +62,36 @@ body {
     transition: 0.3s;
   }
 
+  form{
+    display: flex;
+  }
+
   .row-task {
     border-bottom: 1px solid;
     margin-left: -1px;
     border-bottom-color: #e6e6e6;
     width: 100%;
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+  input[type=submit] {
+    visibility: hidden;
+  }
+
+  .input-text{
+    background-image: url(arrow_down.svg);
+    background-repeat: no-repeat;
+    height: 32px;
+    padding-left: 58px;
+  }
+
+  .input-data{
+    background-image: url(calendar_add.svg);
+    background-repeat: no-repeat;
+    height: 32px;
+    padding-left: 40px;
   }
 }
 
@@ -119,17 +144,6 @@ body {
   margin: 0 auto;
   background-color: white;
   box-shadow: 0px 6px 7px 1px #b1b1b1;
-}
-
-input[type=checkbox] {
-  display: none;
-}
-
-input[type=text] {
-  background-image: url(arrow_down.svg);
-  background-repeat: no-repeat;
-  height: 32px;
-  padding-left: 58px;
 }
 
 .line-text {
