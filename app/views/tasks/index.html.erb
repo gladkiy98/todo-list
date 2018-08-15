@@ -13,8 +13,9 @@
           <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: "off", id: 'input-text' %>
         </div>
         <div class="col-md-3">
-          <%= f.text_field :completed_to, class: 'border-0 input-data datepicker', autocomplete: "off", id: 'input-date' %>
+          <input class="border-0 input-data datepicker" id="input-date">
         </div>
+        <%= f.submit %>
       <% end %>
     </div>
     <div class="row col-md-12" id="show">

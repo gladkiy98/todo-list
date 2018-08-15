@@ -5,6 +5,7 @@ Task.prototype.init = function() {
   task.active();
   task.completed();
   task.remove();
+  task.submitDate();
 };
 
 Task.prototype.toggleStatus = function(oldStatus, newStatus) {
@@ -43,5 +44,20 @@ Task.prototype.remove = function() {
     };
   });
 }
+
+Task.prototype.submitDate = function(){
+  $(function() {
+    $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true,
+    }).on('changeDate', function(event) {
+      $(this).focus();
+      if(event.which == 13) {
+        $('form').submit();
+      }
+      $('#input-text').focus();
+    });
+  })
+};
 
 task.init();
