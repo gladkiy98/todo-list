@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
+    @task = Task.new
   end
 
   def create
@@ -22,7 +23,9 @@ class TasksController < ApplicationController
 
   def destroy
     task.destroy
-    render json: { success: true }
+    respond_to do |format|
+      format.js
+    end
   end
 
   def active

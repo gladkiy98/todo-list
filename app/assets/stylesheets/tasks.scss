@@ -62,7 +62,7 @@ body {
     transition: 0.3s;
   }
 
-  form{
+  form {
     display: flex;
   }
 
@@ -76,19 +76,20 @@ body {
   input[type=checkbox] {
     display: none;
   }
+  
   input[type=submit] {
     visibility: hidden;
     display: none;
   }
 
-  .input-text{
+  .input-text {
     background-image: url(arrow_down.svg);
     background-repeat: no-repeat;
     height: 32px;
     padding-left: 58px;
   }
 
-  .input-data{
+  .input-data {
     background-image: url(calendar_add.svg);
     background-repeat: no-repeat;
     height: 32px;

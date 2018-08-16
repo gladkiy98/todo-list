@@ -4,7 +4,6 @@ var task = new Task();
 Task.prototype.init = function() {
   task.active();
   task.completed();
-  task.remove();
   task.submitDate();
 };
 
@@ -30,33 +29,20 @@ Task.prototype.completed = function() {
   task.toggleStatus('active', 'completed');
 }
 
-Task.prototype.remove = function() {
-  $(document).on('click', '.delete-action', function() {
-    var current = $(this).parents('.row-task');
-    if(confirm("Delete?")) {
-      $.ajax({
-        url: '/tasks/' + $(current).attr('data-task-id'),
-        type: 'DELETE',
-        success: function() {
-          $(current).fadeOut(200);
-        }
-      });
-    };
-  });
-}
-
-Task.prototype.submitDate = function(){
+Task.prototype.submitDate = function() {
   $(function() {
-    $('.datepicker').datepicker({
+    var $input = $('.datepicker');
+    $input.datepicker({
       format: 'dd/mm/yyyy',
-      autoclose: true,
-    }).on('changeDate', function(event) {
-      $(this).focus();
-      if(event.which == 13) {
+      autoclose: true
+    }).on('keypress changeDate', function(e) {
+      if (e.which == 13) {   
         $('form').submit();
-      }
-      $('#input-text').focus();
-    });
+        $('#input-text').focus();
+      } else {
+        $input.focus();
+      };
+    })
   })
 };
 

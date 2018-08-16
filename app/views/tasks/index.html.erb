@@ -4,20 +4,20 @@
   </div>
 </div>
 <div class="row content-task">
+  <div class="row col-md-12 row-text">
+    <%= form_for @task, method: :post, remote: true do |f| %>
+      <div class="col-md-9 border-0">
+        <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: "off", id: 'input-text' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :completed_to, class: 'border-0 input-data datepicker', autocomplete: "off" %>
+      </div>
+      <%= f.submit %>
+    <% end %>
+  </div>
   <% if @tasks.empty? %>
     <span class="text-warning">There are no tasks!</span>
   <% else %>
-    <div class="row col-md-12 row-text">
-      <%= form_for Task.new, method: :post, remote: true do |f| %>
-        <div class="col-md-9 border-0">
-          <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: "off", id: 'input-text' %>
-        </div>
-        <div class="col-md-3">
-          <input class="border-0 input-data datepicker" id="input-date">
-        </div>
-        <%= f.submit %>
-      <% end %>
-    </div>
     <div class="row col-md-12" id="show">
       <%= render partial: 'task', locals: { tasks: @tasks } %>
     </div>
