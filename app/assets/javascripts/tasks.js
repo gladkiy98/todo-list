@@ -46,4 +46,46 @@ Task.prototype.submitDate = function() {
   })
 };
 
+Task.prototype.create = function(task_id,task_title, task_status, task_url) {
+  var row = document.createElement("div");
+  var div1 = document.createElement("div");
+  var div2 = document.createElement("div");
+  var checkBox = document.createElement("input");
+  var label = document.createElement("label");
+  var labelText = document.createTextNode(task_title);
+  var linkEdit = document.createElement("a");
+  var linkDelete = document.createElement("a");
+
+  row.setAttribute("data-task-id", task_id);
+  row.className = "row pad-top-8 task row-task " + task_status;
+  div1.className = "col-md-9";
+  div2.className = "col-md-3";
+  checkBox.type = "checkbox";
+  checkBox.id = ("checked_" + task_id);
+  checkBox.name = "status";
+  checkBox.value = "<%= @task.status %>";
+  checkBox.className = "checkbox-status-" + task_status;
+  label.className = "completed-action title";
+  label.setAttribute("for", "checked_" + task_id);
+  linkEdit.text = "Edit";
+  linkEdit.className = "action";
+  linkDelete.text = "Delete";
+  linkDelete.href = task_url;
+  linkDelete.className = "action delete-action";
+  linkDelete.setAttribute("data-confirm", "Are you sure?");
+  linkDelete.setAttribute("data-remote", "true");
+  linkDelete.setAttribute("data-method", "delete");
+
+  label.append(labelText);
+  div1.append(checkBox);
+  div1.append(label);
+
+  div2.append(linkEdit);
+  div2.append(linkDelete);
+  row.append(div1);
+  row.append(div2);
+
+  $('#container').prepend(row);
+};
+
 task.init();
