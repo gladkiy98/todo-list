@@ -1,40 +1,40 @@
-<div class="row text-center">
-  <div class="text-center hero-head h1">
+<div class='row text-center'>
+  <div class='text-center hero-head h1'>
      <h1>todos</h1>
   </div>
 </div>
-<div class="row content-task">
-  <div class="row col-md-12 row-text">
+<div class='row content-task'>
+  <div class='row col-md-12 row-text'>
     <%= form_for @task, method: :post, remote: true do |f| %>
-      <div class="col-md-9 border-0">
-        <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: "off", id: 'input-text' %>
+      <div class='col-md-9 border-0'>
+        <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: 'off', id: 'input-text' %>
       </div>
-      <div class="col-md-3">
-        <%= f.text_field :completed_to, class: 'border-0 input-data datepicker', autocomplete: "off" %>
+      <div class='col-md-3'>
+        <%= f.text_field :completed_to, class: 'border-0 input-data datepicker', autocomplete: 'off' %>
       </div>
       <%= f.submit %>
     <% end %>
   </div>
   <% if @tasks.empty? %>
-    <span class="text-warning">There are no tasks!</span>
+    <span class='text-warning'>There are no tasks!</span>
   <% else %>
-    <div class="row col-md-12" id="container">
+    <div class='row col-md-12' id='container'>
       <%= render partial: 'task', locals: { tasks: @tasks } %>
     </div>
-    <div class="row w-100 text-center pad-top-8">
-      <div class="col-md-3">
-        <p class="text-left">items left</p>
+    <div class='row w-100 text-center pad-top-8'>
+      <div class='col-md-3'>
+        <p class='text-left'>items left</p>
       </div>
-      <div class="col-md-6">
-        <button class="btn btn-sm btn-outline-secondary">All</button>
-        <button class="btn btn-sm btn-outline-secondary">Active</button>
-        <button class="btn btn-sm btn-outline-secondary">Completed</button>
+      <div class='col-md-6'>
+        <button class='btn btn-sm btn-outline-secondary'>All</button>
+        <button class='btn btn-sm btn-outline-secondary'>Active</button>
+        <button class='btn btn-sm btn-outline-secondary'>Completed</button>
       </div>
-      <div class="col-md-3">
-        <button class="btn btn-sm btn-outline-secondary">Clear completed</button>
+      <div class='col-md-3'>
+        <button class='btn btn-sm btn-outline-secondary'>Clear completed</button>
       </div>
     </div>
   <% end %>
 </div>
-<div class="line1"></div>
-<div class="line2"></div>
+<div class='line1'></div>
+<div class='line2'></div>
