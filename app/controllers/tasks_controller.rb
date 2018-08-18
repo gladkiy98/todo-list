@@ -1,18 +1,13 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
-  end
-
-  def new
     @task = Task.new
   end
 
   def create
     @task = Task.create(task_params)
-    if @task.errors.empty?
-      redirect_to root_path
-    else
-      render 'new'
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -25,17 +20,11 @@ class TasksController < ApplicationController
     end
   end
 
-  def edit
-    task
-  end
-
-  def show
-    render text: 'Page not found', status: 404 unless task
-  end
-
   def destroy
     task.destroy
-    render json: { success: true }
+    respond_to do |format|
+      format.js
+    end
   end
 
   def active
@@ -49,7 +38,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(%i[title description completed_to])
+    params.require(:task).permit(%i[title completed_to])
   end
 
   def task

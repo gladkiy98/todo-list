@@ -7,5 +7,4 @@ Rails.application.routes.draw do
       put :active
     end
   end
-  post 'create', to: 'tasks#create', as: :task_create
 end
