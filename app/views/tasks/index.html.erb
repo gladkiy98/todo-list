@@ -18,7 +18,7 @@
   <% if @tasks.empty? %>
     <span class="text-warning">There are no tasks!</span>
   <% else %>
-    <div class="row col-md-12" id="show">
+    <div class="row col-md-12" id="container">
       <%= render partial: 'task', locals: { tasks: @tasks } %>
     </div>
     <div class="row w-100 text-center pad-top-8">

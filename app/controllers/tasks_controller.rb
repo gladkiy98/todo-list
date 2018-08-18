@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    Task.create(task_params)
+    @task = Task.create(task_params)
     @tasks = Task.all.order('created_at DESC')
     respond_to do |format|
       format.js
