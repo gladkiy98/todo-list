@@ -26,12 +26,12 @@
         <p class='text-left'>items left</p>
       </div>
       <div class='col-md-6'>
-        <button class='btn btn-sm btn-outline-secondary'>All</button>
-        <button class='btn btn-sm btn-outline-secondary'>Active</button>
-        <button class='btn btn-sm btn-outline-secondary'>Completed</button>
+        <%= link_to 'all', root_path, :'data-attribute' => 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>
+        <%= link_to 'Active', root_path(@tasks, status: 0), :'data-attribute' => 'btn-status-0', class: 'btn btn-sm btn-outline-secondary', remote: true %>
+        <%= link_to 'Completed', root_path(@tasks, status: 1), :'data-attribute' => 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
       </div>
       <div class='col-md-3'>
-        <button class='btn btn-sm btn-outline-secondary'>Clear completed</button>
+        <%= link_to 'Clear completed', root_path(@task), class: 'badge badge-light' %>
       </div>
     </div>
   <% end %>

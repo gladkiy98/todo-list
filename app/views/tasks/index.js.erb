@@ -1,0 +1,4 @@
+$('.disabled').removeClass('disabled');
+var status = '<%= params[:status] %>';
+$('#container').html("<%= j (render partial: 'task', locals: { tasks: @tasks } ) %>");
+$('[data-attribute="btn-status-' + status + '"]').addClass(' disabled');
