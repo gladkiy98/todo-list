@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
   def index
     @task = Task.new
-    if params[:status]
-      @tasks = Task.where(status: params[:status])
-    else
-      @tasks = Task.all
-    end
+    @tasks = if params[:status]
+              Task.by_status(params[:status])
+            else
+              @tasks = Task.all
+            end
   end
 
   def create
@@ -48,4 +48,5 @@ class TasksController < ApplicationController
   def task
     Task.find(params[:id])
   end
+
 end
