@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   end
 
   def completed
-    task.update_attributes(completed_at: DateTime.now, status: 1)
+    task.update_attributes(completed_at: Time.now, status: 1)
   end
 
   private

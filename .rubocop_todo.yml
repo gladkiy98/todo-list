@@ -18,5 +18,3 @@ Metrics/AbcSize:
   Max: 20
 Style/MixinUsage:
   Enabled: false
-Style/DateTime:
-  Enabled: false
