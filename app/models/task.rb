@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   enum status: %i[active completed]
-  scope :by_status, ->(stat) { where(:status => stat) }
+  scope :by_status, ->(stat) { where(status: stat) if stat }
 
   validates :title, presence: true
   validates :completed_to, presence: true
