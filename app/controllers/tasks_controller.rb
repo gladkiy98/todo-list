@@ -27,6 +27,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def clear_completed
+    Task.where(status: 1).destroy_all
+    respond_to do |format|
+      format.js
+      format.html { redirect_to tasks_url }
+      format.json { head :no_content }
+    end
+  end
+
   def active
     task.update_attributes(status: 0, completed_at: nil)
   end
