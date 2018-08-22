@@ -23,7 +23,7 @@
     </div>
     <div class='row w-100 text-center pad-top-8'>
       <div class='col-md-3'>
-        <p class='text-left'>items left</p>
+        <p class='text-left'><%= @voutes %> <%= @items_left %></p>
       </div>
       <div class='col-md-6'>
         <%= link_to 'all', root_path, :'data-attribute' => 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>
