@@ -28,11 +28,9 @@ class TasksController < ApplicationController
   end
 
   def clear_completed
-    Task.where(status: 1).destroy_all
+    Task.completed.delete_all
     respond_to do |format|
       format.js
-      format.html { redirect_to tasks_url }
-      format.json { head :no_content }
     end
   end
 
