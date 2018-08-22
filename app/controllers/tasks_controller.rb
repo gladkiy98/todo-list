@@ -27,6 +27,13 @@ class TasksController < ApplicationController
     end
   end
 
+  def clear_completed
+    Task.completed.delete_all
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def active
     task.update_attributes(status: 0, completed_at: nil)
   end

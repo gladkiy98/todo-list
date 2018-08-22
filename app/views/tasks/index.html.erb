@@ -31,7 +31,7 @@
         <%= link_to 'Completed', root_path(@tasks, status: 1), :'data-attribute' => 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
       </div>
       <div class='col-md-3'>
-        <%= link_to 'Clear completed', root_path(@task), class: 'badge badge-light' %>
+        <%= link_to 'Clear completed', clear_completed_tasks_path, remote: true, method: :delete, class: 'badge badge-light' %>
       </div>
     </div>
   <% end %>
