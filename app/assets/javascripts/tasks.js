@@ -23,14 +23,14 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
 };
 
 Task.prototype.changeNumber = function(operator) {
-  var num = $('.num').text();
+  var num = $('#num').text();
   num = parseInt(num);
   num = eval('num ' + operator + ' 1' )
   if (num > 1) {
-    $('.num').text(num + ' items left')
+    $('#num').text(num + ' items left')
   }
   else {
-    $('.num').text(num + ' item left')
+    $('#num').text(num + ' item left')
   }
 };
 
