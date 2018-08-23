@@ -26,12 +26,9 @@ Task.prototype.changeNumber = function(operator) {
   var num = $('#num').text();
   num = parseInt(num);
   num = eval('num ' + operator + ' 1' )
-  if (num > 1) {
-    $('#num').text(num + ' items left')
-  }
-  else {
-    $('#num').text(num + ' item left')
-  }
+  var text = num + ' item';
+  if (num != 1) text = text + 's';
+  $('#num').text(text + ' left');
 };
 
 Task.prototype.active = function() {
