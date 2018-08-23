@@ -22,8 +22,8 @@
       <%= render partial: 'task', locals: { tasks: @tasks } %>
     </div>
     <div class='row w-100 text-center pad-top-8'>
-      <div class='col-md-3'>
-        <p class='text-left'><%= @voutes %> <%= @items_left %></p>
+      <div class='col-md-3 d-flex'>
+        <p class='text-left mar-left-5 num'><%= pluralize @active_counte, 'item' %> left</p>
       </div>
       <div class='col-md-6'>
         <%= link_to 'all', root_path, :'data-attribute' => 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>

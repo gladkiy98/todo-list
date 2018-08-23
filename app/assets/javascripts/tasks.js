@@ -7,7 +7,7 @@ Task.prototype.init = function() {
   task.submitDate();
 };
 
-Task.prototype.toggleStatus = function(oldStatus, newStatus) {
+Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
   $(document).on('change', '.' + oldStatus + ' input', function() {
     var current = $(this).parents('.' + oldStatus);
     $.ajax({
@@ -16,18 +16,31 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus) {
       success: function() {
         current.removeClass(oldStatus);
         current.addClass(newStatus);
+        task.changeNumber(operator);
       }
     });
   });
 };
 
+Task.prototype.changeNumber = function(operator) {
+  var num = $('.num').text();
+  num = parseInt(num);
+  num = eval('num ' + operator + ' 1' )
+  if (num > 1) {
+    $('.num').text(num + ' items left')
+  }
+  else {
+    $('.num').text(num + ' item left')
+  }
+};
+
 Task.prototype.active = function() {
-  task.toggleStatus('completed', 'active');
-}
+  task.toggleStatus('completed', 'active', '+');
+};
 
 Task.prototype.completed = function() {
-  task.toggleStatus('active', 'completed');
-}
+  task.toggleStatus('active', 'completed', '-');
+};
 
 Task.prototype.submitDate = function() {
   $(function() {
