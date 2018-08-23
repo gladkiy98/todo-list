@@ -23,12 +23,10 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
 };
 
 Task.prototype.changeNumber = function(operator) {
-  var num = $('#num').text();
-  num = parseInt(num);
-  num = eval('num ' + operator + ' 1' )
-  var text = num + ' item';
-  if (num != 1) text = text + 's';
-  $('#num').text(text + ' left');
+  var count = parseInt($('#num').text());
+  var number = eval('count ' + operator + ' 1' );
+  var text = number + ' item' + (number == 1 && ' left' || 's left');
+  $('#num').text(text);
 };
 
 Task.prototype.active = function() {
