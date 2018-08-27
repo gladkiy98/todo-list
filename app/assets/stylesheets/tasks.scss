@@ -28,6 +28,7 @@ body {
     .action {opacity: 0;}
     &:hover {
       background-color: #e8e8e8;
+      cursor: ns-resize;
       .action {
         opacity: 1;
         tarnsition: opacity 0.5s else;
@@ -51,6 +52,7 @@ body {
   }
  
  label::before {
+    margin-left: 15px;
     display: inline-block;
     content: '';
     width: 32px;
@@ -60,6 +62,7 @@ body {
     vertical-align: middle;
     margin-right: 26px;
     transition: 0.3s;
+    cursor: pointer;
   }
 
   form {
@@ -86,7 +89,7 @@ body {
     background-image: url(arrow_down.svg);
     background-repeat: no-repeat;
     height: 32px;
-    padding-left: 58px;
+    padding-left: 40px;
   }
 
   .input-data {
