@@ -97,3 +97,9 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 };
 
 task.init();
+
+$(function() {
+  $('.sortable').railsSortable({
+    containment: 'parent'
+  });
+});
