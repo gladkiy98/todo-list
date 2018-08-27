@@ -103,5 +103,4 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   $('#container').prepend(row);
 };
 
-$(document).ready( task.init );
-
+$(document).ready(task.init);
