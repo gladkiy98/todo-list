@@ -5,6 +5,13 @@ Task.prototype.init = function() {
   task.active();
   task.completed();
   task.submitDate();
+  task.sort();
+};
+
+Task.prototype.sort = function() {
+  $('.sortable').railsSortable({
+    containment: 'parent'
+  });
 };
 
 Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
@@ -96,10 +103,5 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   $('#container').prepend(row);
 };
 
-task.init();
+$(document).ready( task.init );
 
-$(function() {
-  $('.sortable').railsSortable({
-    containment: 'parent'
-  });
-});
