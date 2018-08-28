@@ -1,6 +1,4 @@
 $('#input-text').val('');
 $('.datepicker').val('');
 
-var task = new Task();
-
 task.create('<%= @task.id %>', '<%= @task.title %>', '<%= @task.status %>', '<%= task_path(@task) %>');

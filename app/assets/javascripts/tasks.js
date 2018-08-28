@@ -10,6 +10,7 @@ Task.prototype.init = function() {
 
 Task.prototype.sort = function() {
   $('.sortable').railsSortable({
+    handle: '.handle',
     containment: 'parent'
   });
 };
