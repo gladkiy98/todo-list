@@ -28,7 +28,7 @@ body {
     .action {opacity: 0;}
     &:hover {
       background-color: #e8e8e8;
-      cursor: ns-resize;
+      cursor: pointer;
       .action {
         opacity: 1;
         tarnsition: opacity 0.5s else;
@@ -42,7 +42,8 @@ body {
       text-decoration: 
       line-through;
     }
-    input[type=checkbox]:checked + label::before {
+
+    input[type=checkbox]:checked + .check {
       border-radius: 50%;
       background-image: url(circle_ok.svg);
       width: 32px;
@@ -50,8 +51,17 @@ body {
       text-align: center;
     }
   }
+
+  .handle {
+    display: inline-block;
+    width: 13px;
+    height: 18px;
+    background-image: url(drag.svg);
+    cursor: ns-resize;
+    background-repeat: no-repeat;
+  }
  
- label::before {
+ .check {
     margin-left: 15px;
     display: inline-block;
     content: '';
@@ -90,13 +100,13 @@ body {
     background-repeat: no-repeat;
     height: 32px;
     padding-left: 40px;
+    margin-left: 15px;
   }
 
   .input-data {
     background-image: url(calendar_add.svg);
     background-repeat: no-repeat;
     height: 32px;
-    padding-left: 40px;
   }
 }
 
