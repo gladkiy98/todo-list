@@ -1,11 +1,14 @@
 function Task() {};
 var task = new Task();
+var ENTER_KEY = 13;
+var ESCAPE_KEY = 27;
 
 Task.prototype.init = function() {
   task.active();
   task.completed();
   task.submitDate();
   task.sort();
+  task.onBlur();
   task.edit();
 };
 
@@ -53,7 +56,7 @@ Task.prototype.submitDate = function() {
       format: 'dd/mm/yyyy',
       autoclose: true
     }).on('keypress changeDate', function(e) {
-      if (e.which == 13) {   
+      if (e.which == ENTER_KEY) {
         $('form').submit();
         $('#input-text').focus();
       } else {
@@ -68,11 +71,13 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   var div1 = document.createElement('div');
   var div2 = document.createElement('div');
   var checkBox = document.createElement('input');
+  var i = document.createElement('i');
+  var labelCheck = document.createElement('label');
   var label = document.createElement('label');
   var labelText = document.createTextNode(taskTitle);
-  var linkEdit = document.createElement('a');
   var linkDelete = document.createElement('a');
 
+  row.id = ('Task_' + taskId);
   row.setAttribute('data-task-id', taskId);
   row.className = 'row pad-top-8 task row-task ' + taskStatus;
   div1.className = 'col-md-9';
@@ -82,10 +87,10 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   checkBox.name = 'status';
   checkBox.value = taskStatus;
   checkBox.className = 'checkbox-status-' + taskStatus;
+  i.className = 'handle ui-sortable-handle';
+  labelCheck.className = 'check';
+  labelCheck.setAttribute('for', 'checked_' + taskId);
   label.className = 'completed-action title';
-  label.setAttribute('for', 'checked_' + taskId);
-  linkEdit.text = 'Edit';
-  linkEdit.className = 'action';
   linkDelete.text = 'Delete';
   linkDelete.href = taskUrl;
   linkDelete.className = 'action delete-action';
@@ -95,9 +100,10 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 
   label.append(labelText);
   div1.append(checkBox);
+  div1.append(i);
+  div1.append(labelCheck);
   div1.append(label);
 
-  div2.append(linkEdit);
   div2.append(linkDelete);
   row.append(div1);
   row.append(div2);
@@ -106,31 +112,43 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 };
 
 Task.prototype.edit = function() {
-  $(document).on('click', '.title', function() {
-  var text = $(event.target).text();
-  var element = $(event.target);
-  $('<input></input>')
-    .attr({
+  $(document).on('click', '.title', function(e) {
+    var text = $(this).text();
+    var $element = $(e.target);
+    var $input = $('<input />').attr({
       'type': 'text',
-      'name': 'fname',
       'id': 'txt_input',
-      'size': '30',
+      'data-prev-text': text,
       'value': text
-    })
-  .appendTo(element);
-  $('#txt_input').focus();
-  });
-
-  $(document).on('blur','#txt_input', function() {
-    var text = $(this).val();
-    var label = $(event.target).closest('label');
-    var current = $(this).parents('.row-task');
-    $.ajax({
-      url: '/tasks/' + $(current).attr('data-task-id'),
-      type: 'PUT',
-      data: {title: text}
     });
-    $(label).text(text);
+    $element.html($input);
+    $input.on('keyup', function(ev) {
+      if (ev.keyCode === ESCAPE_KEY) {
+        $element.html(text);
+      };
+
+      if (ev.keyCode === ENTER_KEY) {
+        $input.blur();
+      };
+    })
+  });
+}
+
+Task.prototype.onBlur = function() {
+  $(document).on('blur', '#txt_input', function(e) {
+    var prevText = $(this).attr('data-prev-text');
+    var text = $(this).val();
+    var label = $(e.target).closest('label');
+    var row = $(this).parents('.row-task');
+
+    if (prevText === text) return $(label).html(prevText);
+
+    $.ajax({
+      url: '/tasks/' + $(row).attr('data-task-id'),
+      type: 'PUT',
+      data: { title: text }
+    });
+    $(label).html(text);
   });
 }
 
