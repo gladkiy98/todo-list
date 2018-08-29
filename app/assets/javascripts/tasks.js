@@ -6,6 +6,7 @@ Task.prototype.init = function() {
   task.completed();
   task.submitDate();
   task.sort();
+  task.edit();
 };
 
 Task.prototype.sort = function() {
@@ -16,7 +17,7 @@ Task.prototype.sort = function() {
 };
 
 Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
-  $(document).on('change', '.' + oldStatus + ' input', function() {
+  $(document).on('change', '.' + oldStatus + ' input[name="status"]', function() {
     var current = $(this).parents('.' + oldStatus);
     $.ajax({
       url: '/tasks/' + $(current).attr('data-task-id') + '/' + newStatus,
@@ -103,5 +104,34 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 
   $('#container').prepend(row);
 };
+
+Task.prototype.edit = function() {
+  $(document).on('click', '.title', function() {
+  var text = $(event.target).text();
+  var element = $(event.target);
+  $('<input></input>')
+    .attr({
+      'type': 'text',
+      'name': 'fname',
+      'id': 'txt_input',
+      'size': '30',
+      'value': text
+    })
+  .appendTo(element);
+  $('#txt_input').focus();
+  });
+
+  $(document).on('blur','#txt_input', function() {
+    var text = $(this).val();
+    var label = $(event.target).closest('label');
+    var current = $(this).parents('.row-task');
+    $.ajax({
+      url: '/tasks/' + $(current).attr('data-task-id'),
+      type: 'PUT',
+      data: {title: text}
+    });
+    $(label).text(text);
+  });
+}
 
 $(document).ready(task.init);
