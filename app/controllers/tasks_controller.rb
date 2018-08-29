@@ -13,12 +13,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    task.update_attributes(task_params)
-    if @task.errors.empty?
-      redirect_to root_path
-    else
-      render 'edit'
-    end
+    task.update(title: params[:title])
   end
 
   def destroy
