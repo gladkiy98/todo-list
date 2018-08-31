@@ -23,6 +23,9 @@ Task.prototype.sort = function() {
 Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
   $(document).on('change', '.' + oldStatus + ' input[name="status"]', function() {
     var current = $(this).parents('.' + oldStatus);
+    var currentLabel = current.find('.title');
+    var time = newStatus === 'completed' && moment().format('D MMM YYYY HH:mm') || '';
+    currentLabel.attr('data-original-title', time);
     $.ajax({
       url: '/tasks/' + $(current).attr('data-task-id') + '/' + newStatus,
       type: 'PUT',
