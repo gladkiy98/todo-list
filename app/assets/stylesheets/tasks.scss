@@ -28,12 +28,21 @@ body {
     .action {opacity: 0;}
     &:hover {
       background-color: #e8e8e8;
-      cursor: pointer;
+      cursor: default;
       .action {
         opacity: 1;
         tarnsition: opacity 0.5s else;
       }
     }
+  }
+
+  input {
+    outline: none;
+  }
+
+  .title {
+    border-bottom: dashed 2px;
+    cursor: pointer;
   }
 
   .completed {
@@ -107,15 +116,22 @@ body {
     background-image: url(calendar_add.svg);
     background-repeat: no-repeat;
     height: 32px;
+    padding-left: 35px;
   }
 }
 
 .delete-action {
+  background-image: url(close.svg);
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-top: 5px;
+  width: 25px;
+  height: 25px;
   &:hover {
     background-color: #ccc;
     text-decoration: underline;
   }
-  }
+}
 
 .hero-head {
 	margin: 40px;
