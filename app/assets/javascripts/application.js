@@ -14,6 +14,7 @@
 //= require jquery-ui/widgets/sortable
 //= require rails_sortable
 //= require activestorage
+//= require popper
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require_tree .

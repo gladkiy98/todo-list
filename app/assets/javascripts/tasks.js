@@ -10,6 +10,7 @@ Task.prototype.init = function() {
   task.sort();
   task.onBlur();
   task.edit();
+  task.tooltip();
 };
 
 Task.prototype.sort = function() {
@@ -52,9 +53,11 @@ Task.prototype.completed = function() {
 Task.prototype.submitDate = function() {
   $(function() {
     var $input = $('.datepicker');
+    var nowDate = new Date()
     $input.datepicker({
       format: 'dd/mm/yyyy',
-      autoclose: true
+      autoclose: true,
+      startDate: nowDate.toDateString()
     }).on('keypress changeDate', function(e) {
       if (e.which == ENTER_KEY) {
         $('form').submit();
@@ -81,17 +84,16 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   row.setAttribute('data-task-id', taskId);
   row.className = 'row pad-top-8 task row-task ' + taskStatus;
   div1.className = 'col-md-9';
-  div2.className = 'col-md-3';
+  div2.className = 'col-md-3 text-right';
+  i.className = 'handle ui-sortable-handle';
   checkBox.type = 'checkbox';
-  checkBox.id = ('checked_' + taskId);
   checkBox.name = 'status';
+  checkBox.id = ('checked_' + taskId);
   checkBox.value = taskStatus;
   checkBox.className = 'checkbox-status-' + taskStatus;
-  i.className = 'handle ui-sortable-handle';
   labelCheck.className = 'check';
   labelCheck.setAttribute('for', 'checked_' + taskId);
   label.className = 'completed-action title';
-  linkDelete.text = 'Delete';
   linkDelete.href = taskUrl;
   linkDelete.className = 'action delete-action';
   linkDelete.setAttribute('data-confirm', 'Are you sure?');
@@ -99,8 +101,8 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   linkDelete.setAttribute('data-method', 'delete');
 
   label.append(labelText);
-  div1.append(checkBox);
   div1.append(i);
+  div1.append(checkBox);
   div1.append(labelCheck);
   div1.append(label);
 
@@ -109,6 +111,8 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   row.append(div2);
 
   $('#container').prepend(row);
+
+  task.changeNumber('+');
 };
 
 Task.prototype.edit = function() {
@@ -121,7 +125,9 @@ Task.prototype.edit = function() {
       'data-prev-text': text,
       'value': text
     });
+    $element.removeClass('title');
     $element.html($input);
+    $input.select();
     $input.on('keyup', function(ev) {
       if (ev.keyCode === ESCAPE_KEY) {
         $element.html(text);
@@ -141,6 +147,8 @@ Task.prototype.onBlur = function() {
     var label = $(e.target).closest('label');
     var row = $(this).parents('.row-task');
 
+    label.addClass(' title');
+
     if (prevText === text) return $(label).html(prevText);
 
     $.ajax({
@@ -150,6 +158,10 @@ Task.prototype.onBlur = function() {
     });
     $(label).html(text);
   });
+}
+
+Task.prototype.tooltip = function() {
+  $('[data-toggle="tooltip"]').tooltip();
 }
 
 $(document).ready(task.init);
