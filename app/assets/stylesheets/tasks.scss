@@ -40,16 +40,17 @@ body {
     outline: none;
   }
 
-  .title {
+  .title-active {
     border-bottom: dashed 2px;
     cursor: pointer;
   }
 
   .completed {
-    .title {
+    .title-completed {
       color: #666666; 
       text-decoration: 
       line-through;
+      border-bottom: dashed 2px;
     }
 
     input[type=checkbox]:checked + .check {
@@ -127,10 +128,6 @@ body {
   margin-top: 5px;
   width: 25px;
   height: 25px;
-  &:hover {
-    background-color: #ccc;
-    text-decoration: underline;
-  }
 }
 
 .hero-head {
