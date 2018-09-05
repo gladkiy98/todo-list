@@ -138,16 +138,9 @@ Task.prototype.edit = function() {
     $element.removeClass('title-active');
     $element.html($input);
     $input.select();
-    $input.on('keyup', function(ev) {
-      if (ev.keyCode === ESCAPE_KEY) {
-        $element.html(prevText);
-        $element.addClass(' title-active');
-        $input.remove();
-      };
 
-      if (ev.keyCode === ENTER_KEY) {
-        var text = $(this).val();
-        label.addClass(' title-active');
+    function save(label, prevText, text, row) {
+      label.addClass(' title-active');
 
         if (prevText === text) return $(label).html(prevText);
 
@@ -157,21 +150,24 @@ Task.prototype.edit = function() {
           data: { title: text }
         });
         $(label).html(text);
+    }
+
+    $input.on('keyup', function(ev) {
+      if (ev.keyCode === ESCAPE_KEY) {
+        $element.html(prevText);
+        $element.addClass(' title-active');
+        $input.remove();
+      };
+
+      if (ev.keyCode === ENTER_KEY) {
+        var text = $(this).val();
+        save(label, prevText, text, row);
       };
     })
 
     $input.on('blur', function() {
       var text = $(this).val();
-      label.addClass(' title-active');
-
-      if (prevText === text) return $(label).html(prevText);
-
-      $.ajax({
-        url: '/tasks/' + $(row).attr('data-task-id'),
-        type: 'PUT',
-        data: { title: text }
-      });
-      $(label).html(text);
+      save(label, prevText, text, row);
     });
   });
 }
