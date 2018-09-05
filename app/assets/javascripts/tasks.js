@@ -139,17 +139,17 @@ Task.prototype.edit = function() {
     $element.html($input);
     $input.select();
 
-    function save(label, prevText, text, row) {
+    function save(objLabel, lastText, textNow, taskRow) {
       label.addClass(' title-active');
 
-        if (prevText === text) return $(label).html(prevText);
+        if (lastText === textNow) return $(objLabel).html(lastText);
 
         $.ajax({
-          url: '/tasks/' + $(row).attr('data-task-id'),
+          url: '/tasks/' + $(taskRow).attr('data-task-id'),
           type: 'PUT',
-          data: { title: text }
+          data: { title: textNow }
         });
-        $(label).html(text);
+        $(objLabel).html(textNow);
     }
 
     $input.on('keyup', function(ev) {
