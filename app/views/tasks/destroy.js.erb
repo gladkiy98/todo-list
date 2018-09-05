@@ -1,1 +1,5 @@
-$('[data-task-id="<%= params[:id] %>"]').remove();
+var currentTask = $('[data-task-id="<%= params[:id] %>"]');
+currentTask.remove();
+if (currentTask.hasClass('active')) {
+	task.changeNumber('-');
+}

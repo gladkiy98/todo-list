@@ -8,7 +8,6 @@ Task.prototype.init = function() {
   task.completed();
   task.submitDate();
   task.sort();
-  task.onBlur();
   task.edit();
   task.tooltip();
 };
@@ -23,7 +22,7 @@ Task.prototype.sort = function() {
 Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
   $(document).on('change', '.' + oldStatus + ' input[name="status"]', function() {
     var current = $(this).parents('.' + oldStatus);
-    var currentLabel = current.find('.title');
+    var currentLabel = current.find('.title-' + oldStatus);
     var time = newStatus === 'completed' && moment().format('D MMM YYYY HH:mm') || '';
     currentLabel.attr('data-original-title', time);
     $.ajax({
@@ -33,6 +32,8 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
         current.removeClass(oldStatus);
         current.addClass(newStatus);
         task.changeNumber(operator);
+        currentLabel.removeClass('title-' + oldStatus);
+        currentLabel.addClass('title-' + newStatus);
       }
     });
   });
@@ -96,7 +97,9 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   checkBox.className = 'checkbox-status-' + taskStatus;
   labelCheck.className = 'check';
   labelCheck.setAttribute('for', 'checked_' + taskId);
-  label.className = 'completed-action title';
+  label.className = 'completed-action title-' + taskStatus;
+  label.setAttribute('data-toggle', 'tooltip');
+  label.setAttribute('data-placement', 'top');
   linkDelete.href = taskUrl;
   linkDelete.className = 'action delete-action';
   linkDelete.setAttribute('data-confirm', 'Are you sure?');
@@ -116,10 +119,11 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   $('#container').prepend(row);
 
   task.changeNumber('+');
+  task.tooltip();
 };
 
 Task.prototype.edit = function() {
-  $(document).on('click', '.title', function(e) {
+  $(document).on('click', '.title-active', function(e) {
     var text = $(this).text();
     var $element = $(e.target);
     var $input = $('<input />').attr({
@@ -128,38 +132,43 @@ Task.prototype.edit = function() {
       'data-prev-text': text,
       'value': text
     });
-    $element.removeClass('title');
+    var prevText = $input.attr('data-prev-text');
+    var label = $(e.target).closest('label');
+    var row = $element.parents('.row-task');
+    $element.removeClass('title-active');
     $element.html($input);
     $input.select();
+
+    function save(objLabel, lastText, textNow, taskRow) {
+      label.addClass(' title-active');
+
+        if (lastText === textNow) return $(objLabel).html(lastText);
+
+        $.ajax({
+          url: '/tasks/' + $(taskRow).attr('data-task-id'),
+          type: 'PUT',
+          data: { title: textNow }
+        });
+        $(objLabel).html(textNow);
+    }
+
     $input.on('keyup', function(ev) {
       if (ev.keyCode === ESCAPE_KEY) {
-        $element.html(text);
+        $element.html(prevText);
+        $element.addClass(' title-active');
+        $input.remove();
       };
 
       if (ev.keyCode === ENTER_KEY) {
-        $input.blur();
+        var text = $(this).val();
+        save(label, prevText, text, row);
       };
     })
-  });
-}
 
-Task.prototype.onBlur = function() {
-  $(document).on('blur', '#txt_input', function(e) {
-    var prevText = $(this).attr('data-prev-text');
-    var text = $(this).val();
-    var label = $(e.target).closest('label');
-    var row = $(this).parents('.row-task');
-
-    label.addClass(' title');
-
-    if (prevText === text) return $(label).html(prevText);
-
-    $.ajax({
-      url: '/tasks/' + $(row).attr('data-task-id'),
-      type: 'PUT',
-      data: { title: text }
+    $input.on('blur', function() {
+      var text = $(this).val();
+      save(label, prevText, text, row);
     });
-    $(label).html(text);
   });
 }
 
