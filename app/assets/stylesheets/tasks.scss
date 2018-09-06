@@ -1,5 +1,5 @@
 body {
-  background-color: #e4e4e4;  
+  background-color: #e4e4e4;
 }
 
 .content-task {
@@ -47,8 +47,8 @@ body {
 
   .completed {
     .title-completed {
-      color: #666666; 
-      text-decoration: 
+      color: #666666;
+      text-decoration:
       line-through;
       border-bottom: dashed 2px;
     }
@@ -70,7 +70,7 @@ body {
     cursor: ns-resize;
     background-repeat: no-repeat;
   }
- 
+
  .check {
     margin-left: 15px;
     display: inline-block;
@@ -99,18 +99,18 @@ body {
   input[type=checkbox] {
     display: none;
   }
-  
+
   input[type=submit] {
     visibility: hidden;
     display: none;
   }
 
-  .input-text {
+  .checked-all {
     background-image: url(arrow_down.svg);
     background-repeat: no-repeat;
     height: 32px;
     padding-left: 40px;
-    margin-left: 15px;
+    cursor: pointer;
   }
 
   .input-data {

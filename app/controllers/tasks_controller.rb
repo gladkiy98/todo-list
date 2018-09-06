@@ -30,6 +30,22 @@ class TasksController < ApplicationController
     end
   end
 
+  def completed_all
+    @tasks = Task.all
+    Task.active.update_all(status: 1, completed_at: Time.now)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def active_all
+    @tasks = Task.all
+    Task.completed.update_all(status: 0, completed_at: nil)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def active
     task.update_attributes(status: 0, completed_at: nil)
   end

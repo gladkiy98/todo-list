@@ -10,6 +10,7 @@ Task.prototype.init = function() {
   task.sort();
   task.edit();
   task.tooltip();
+  task.checkedAll();
 };
 
 Task.prototype.sort = function() {
@@ -70,6 +71,33 @@ Task.prototype.submitDate = function() {
         $input.focus();
       };
     })
+  })
+};
+
+Task.prototype.checkedAll = function() {
+  $(document).on('click', '.checked-all', function() {
+    var unSelectTask = $('#container').find('.active').length;
+    var allTask = $('.row-task').length;
+
+    if (unSelectTask === 0) {
+      $.ajax({
+        url: '/tasks/active_all',
+        type: 'PUT'
+      })
+      for(i = 0; i < allTask; i++) {
+        task.changeNumber('+');
+      }
+    };
+
+    if (unSelectTask !== 0) {
+      $.ajax({
+        url: '/tasks/completed_all',
+        type: 'PUT'
+      })
+      for(i = 0; i < unSelectTask; i++) {
+        task.changeNumber('-');
+      }
+    }
   })
 };
 
@@ -142,14 +170,14 @@ Task.prototype.edit = function() {
     function save(objLabel, lastText, textNow, taskRow) {
       label.addClass(' title-active');
 
-        if (lastText === textNow) return $(objLabel).html(lastText);
+      if (lastText === textNow) return $(objLabel).html(lastText);
 
-        $.ajax({
-          url: '/tasks/' + $(taskRow).attr('data-task-id'),
-          type: 'PUT',
-          data: { title: textNow }
-        });
-        $(objLabel).html(textNow);
+      $.ajax({
+        url: '/tasks/' + $(taskRow).attr('data-task-id'),
+        type: 'PUT',
+        data: { title: textNow }
+      });
+      $(objLabel).html(textNow);
     }
 
     $input.on('keyup', function(ev) {

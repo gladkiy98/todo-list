@@ -5,6 +5,7 @@
 </div>
 <div class='row content-task'>
   <div class='row col-md-12 row-text'>
+    <%= label_tag '', '', class: 'checked-all' %>
     <%= form_for @task, method: :post, remote: true do |f| %>
       <div class='col-md-9 border-0'>
         <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: 'off', id: 'input-text' %>
@@ -26,9 +27,9 @@
         <p class='text-left' id='num'><%= pluralize @active_counte, 'item' %> left</p>
       </div>
       <div class='col-md-6'>
-        <%= link_to 'all', root_path, :'data-attribute' => 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>
-        <%= link_to 'Active', root_path(@tasks, status: 0), :'data-attribute' => 'btn-status-0', class: 'btn btn-sm btn-outline-secondary', remote: true %>
-        <%= link_to 'Completed', root_path(@tasks, status: 1), :'data-attribute' => 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
+        <%= link_to 'all', root_path, 'data-attribute': 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>
+        <%= link_to 'Active', root_path(@tasks, status: 0), 'data-attribute': 'btn-status-0', class: 'btn btn-sm btn-outline-secondary', remote: true %>
+        <%= link_to 'Completed', root_path(@tasks, status: 1), 'data-attribute': 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
       </div>
       <div class='col-md-3'>
         <%= link_to 'Clear completed', clear_completed_tasks_path, remote: true, method: :delete, class: 'badge badge-light' %>
