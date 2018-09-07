@@ -2,4 +2,4 @@ for(i = 0; i < $('.row-task').length; i++) {
   task.changeNumber('+');
 }
 $('#container').html("<%= j (render partial: 'tasks/task', locals: { tasks: @tasks } ) %>");
-task.checkedAll('<%= completed_task_index_path %>');
+task.checkedAll('<%= completed_tasks_path %>');

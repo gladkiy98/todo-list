@@ -29,7 +29,7 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
     currentLabel.attr('title', '');
     currentLabel.attr('data-original-title', time);
     $.ajax({
-      url: '/' + newStatus + '_task/' + $(current).attr('data-task-id'),
+      url: '/' + newStatus + '_tasks/' + $(current).attr('data-task-id'),
       type: 'PUT',
       success: function() {
         current.removeClass(oldStatus);
@@ -82,9 +82,9 @@ Task.prototype.submitDate = function() {
 Task.prototype.changeLink = function() {
   var checkAll = $('.content-task').find('.checked-all');
   if ($('#container').find('.active').length !== 0) {
-    checkAll.attr('href', '/completed_task');
+    checkAll.attr('href', '/completed_tasks');
   } else {
-    checkAll.attr('href', '/active_task');
+    checkAll.attr('href', '/active_tasks');
   }
 }
 

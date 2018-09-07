@@ -1,4 +1,4 @@
-class ActiveTaskController < ApplicationController
+class ActiveTasksController < ApplicationController
   def index
     Task.completed.update_all(status: 0, completed_at: nil)
     @tasks = Task.all.order(:sort)
@@ -9,11 +9,5 @@ class ActiveTaskController < ApplicationController
 
   def update
     task.update_attributes(status: 0, completed_at: nil)
-  end
-
-  private
-
-  def task
-    Task.find(params[:id])
   end
 end

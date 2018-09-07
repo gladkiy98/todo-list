@@ -2,4 +2,4 @@ for(i = 0; i < $('#container').find('.active').length; i++) {
   task.changeNumber('-');
 }
 $('#container').html("<%= j (render partial: 'tasks/task', locals: { tasks: @tasks } ) %>");
-task.checkedAll('<%= active_task_index_path %>');
+task.checkedAll('<%= active_tasks_path %>');

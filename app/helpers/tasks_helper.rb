@@ -1,5 +1,5 @@
 module TasksHelper
-  def url
-    Task.active.any? ? completed_task_index_path : active_task_index_path
+  def update_status_url
+    @active_counte != 0 ? completed_tasks_path : active_tasks_path
   end
 end

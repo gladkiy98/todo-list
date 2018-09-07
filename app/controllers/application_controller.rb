@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def layout_by_controller
     devise_controller? ? 'devise' : 'application'
   end
+
+  def task
+    Task.find(params[:id])
+  end
 end
