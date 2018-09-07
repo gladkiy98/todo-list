@@ -18,9 +18,6 @@ class CompletedTaskController < ApplicationController
     task.update_attributes(completed_at: Time.now, status: 1)
   end
 
-  def destroy
-  end
-
   private
 
   def task

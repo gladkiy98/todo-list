@@ -5,10 +5,8 @@ Rails.application.routes.draw do
   end
 
   resources :active_task do
-    put :all, on: :collection
   end
 
   resources :completed_task do
-    put :all, on: :collection
   end
 end

@@ -16,5 +16,4 @@ class ActiveTaskController < ApplicationController
   def task
     Task.find(params[:id])
   end
-
 end
