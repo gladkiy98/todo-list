@@ -29,7 +29,7 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
     currentLabel.attr('title', '');
     currentLabel.attr('data-original-title', time);
     $.ajax({
-      url: '/tasks/' + $(current).attr('data-task-id') + '/' + newStatus,
+      url: '/' + newStatus + '_task/' + $(current).attr('data-task-id'),
       type: 'PUT',
       success: function() {
         current.removeClass(oldStatus);
@@ -39,7 +39,6 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
         currentLabel.addClass('title-' + newStatus);
 
         task.changeLink();
-
         task.tooltip();
       }
     });
@@ -83,9 +82,9 @@ Task.prototype.submitDate = function() {
 Task.prototype.changeLink = function() {
   var checkAll = $('.content-task').find('.checked-all');
   if ($('#container').find('.active').length !== 0) {
-    checkAll.attr('href', '/tasks/completed_all');
+    checkAll.attr('href', '/completed_task');
   } else {
-    checkAll.attr('href', '/tasks/active_all');
+    checkAll.attr('href', '/active_task');
   }
 }
 

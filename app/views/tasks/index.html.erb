@@ -5,7 +5,7 @@
 </div>
 <div class='row content-task'>
   <div class='row col-md-12 row-text'>
-    <%= link_to '', Task.active.any? ? completed_all_tasks_path : active_all_tasks_path, remote: true, method: :put, class: 'checked-all' %>
+    <%= link_to '', url, remote: true, class: 'checked-all' %>
     <%= form_for @task, method: :post, remote: true do |f| %>
       <div class='col-md-9 border-0'>
         <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: 'off', id: 'input-text' %>
@@ -32,7 +32,7 @@
         <%= link_to 'Completed', root_path(@tasks, status: 1), 'data-attribute': 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
       </div>
       <div class='col-md-3'>
-        <%= link_to 'Clear completed', clear_completed_tasks_path, remote: true, method: :delete, class: 'badge badge-light' %>
+        <%= link_to 'Clear completed', new_completed_task_path, remote: true, class: 'badge badge-light' %>
       </div>
     </div>
   <% end %>
