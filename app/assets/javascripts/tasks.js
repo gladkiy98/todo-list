@@ -10,7 +10,7 @@ Task.prototype.init = function() {
   task.sort();
   task.edit();
   task.tooltip();
-  task.checkedAll();
+  task.changeLink();
 };
 
 Task.prototype.sort = function() {
@@ -25,6 +25,8 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
     var current = $(this).parents('.' + oldStatus);
     var currentLabel = current.find('.title-' + oldStatus);
     var time = newStatus === 'completed' && moment().format('D MMM YYYY HH:mm') || '';
+    var checkAll = $('.content-task').find('.checked-all');
+    currentLabel.attr('title', '');
     currentLabel.attr('data-original-title', time);
     $.ajax({
       url: '/tasks/' + $(current).attr('data-task-id') + '/' + newStatus,
@@ -35,6 +37,10 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
         task.changeNumber(operator);
         currentLabel.removeClass('title-' + oldStatus);
         currentLabel.addClass('title-' + newStatus);
+
+        task.changeLink();
+
+        task.tooltip();
       }
     });
   });
@@ -74,31 +80,17 @@ Task.prototype.submitDate = function() {
   })
 };
 
-Task.prototype.checkedAll = function() {
-  $(document).on('click', '.checked-all', function() {
-    var unSelectTask = $('#container').find('.active').length;
-    var allTask = $('.row-task').length;
+Task.prototype.changeLink = function() {
+  var checkAll = $('.content-task').find('.checked-all');
+  if ($('#container').find('.active').length !== 0) {
+    checkAll.attr('href', '/tasks/completed_all');
+  } else {
+    checkAll.attr('href', '/tasks/active_all');
+  }
+}
 
-    if (unSelectTask === 0) {
-      $.ajax({
-        url: '/tasks/active_all',
-        type: 'PUT'
-      })
-      for(i = 0; i < allTask; i++) {
-        task.changeNumber('+');
-      }
-    };
-
-    if (unSelectTask !== 0) {
-      $.ajax({
-        url: '/tasks/completed_all',
-        type: 'PUT'
-      })
-      for(i = 0; i < unSelectTask; i++) {
-        task.changeNumber('-');
-      }
-    }
-  })
+Task.prototype.checkedAll = function(url) {
+  $('.checked-all').attr('href', url);
 };
 
 Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
@@ -148,6 +140,7 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 
   task.changeNumber('+');
   task.tooltip();
+  task.changeLink();
 };
 
 Task.prototype.edit = function() {
