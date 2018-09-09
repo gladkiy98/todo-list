@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+  belongs_to :user
+
   include RailsSortable::Model
   set_sortable :sort
   enum status: %i[active completed]
