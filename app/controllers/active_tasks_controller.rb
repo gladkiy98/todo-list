@@ -1,7 +1,7 @@
 class ActiveTasksController < ApplicationController
   def index
-    Task.completed.update_all(status: 0, completed_at: nil)
-    @tasks = Task.all.order(:sort)
+    current_user.tasks.completed.update_all(status: 0, completed_at: nil)
+    @tasks = current_user.tasks.all.order(:sort)
     respond_to do |format|
       format.js
     end

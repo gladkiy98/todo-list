@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   def index
     @task = Task.new
     @tasks = current_user.tasks.by_status(params[:status]).order(:sort)
-    @active_counte = Task.active.count
+    @active_counte = current_user.tasks.active.count
   end
 
   def create

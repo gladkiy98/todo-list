@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def task
-    Task.find(params[:id])
+    current_user.tasks.find(params[:id])
   end
 end
