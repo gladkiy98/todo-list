@@ -10,6 +10,7 @@ Task.prototype.init = function() {
   task.sort();
   task.edit();
   task.tooltip();
+  task.changeLink();
 };
 
 Task.prototype.sort = function() {
@@ -24,9 +25,11 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
     var current = $(this).parents('.' + oldStatus);
     var currentLabel = current.find('.title-' + oldStatus);
     var time = newStatus === 'completed' && moment().format('D MMM YYYY HH:mm') || '';
+    var checkAll = $('.content-task').find('.checked-all');
+    currentLabel.attr('title', '');
     currentLabel.attr('data-original-title', time);
     $.ajax({
-      url: '/tasks/' + $(current).attr('data-task-id') + '/' + newStatus,
+      url: '/' + newStatus + '_tasks/' + $(current).attr('data-task-id'),
       type: 'PUT',
       success: function() {
         current.removeClass(oldStatus);
@@ -34,6 +37,9 @@ Task.prototype.toggleStatus = function(oldStatus, newStatus, operator) {
         task.changeNumber(operator);
         currentLabel.removeClass('title-' + oldStatus);
         currentLabel.addClass('title-' + newStatus);
+
+        task.changeLink();
+        task.tooltip();
       }
     });
   });
@@ -71,6 +77,19 @@ Task.prototype.submitDate = function() {
       };
     })
   })
+};
+
+Task.prototype.changeLink = function() {
+  var checkAll = $('.content-task').find('.checked-all');
+  if ($('#container').find('.active').length !== 0) {
+    checkAll.attr('href', '/completed_tasks');
+  } else {
+    checkAll.attr('href', '/active_tasks');
+  }
+}
+
+Task.prototype.checkedAll = function(url) {
+  $('.checked-all').attr('href', url);
 };
 
 Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
@@ -120,6 +139,7 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 
   task.changeNumber('+');
   task.tooltip();
+  task.changeLink();
 };
 
 Task.prototype.edit = function() {
@@ -142,14 +162,14 @@ Task.prototype.edit = function() {
     function save(objLabel, lastText, textNow, taskRow) {
       label.addClass(' title-active');
 
-        if (lastText === textNow) return $(objLabel).html(lastText);
+      if (lastText === textNow) return $(objLabel).html(lastText);
 
-        $.ajax({
-          url: '/tasks/' + $(taskRow).attr('data-task-id'),
-          type: 'PUT',
-          data: { title: textNow }
-        });
-        $(objLabel).html(textNow);
+      $.ajax({
+        url: '/tasks/' + $(taskRow).attr('data-task-id'),
+        type: 'PUT',
+        data: { title: textNow }
+      });
+      $(objLabel).html(textNow);
     }
 
     $input.on('keyup', function(ev) {
