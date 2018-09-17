@@ -1,7 +1,8 @@
 class Task < ApplicationRecord
+  include RailsSortable::Model
+
   belongs_to :user
 
-  include RailsSortable::Model
   set_sortable :sort
   enum status: %i[active completed]
   scope :by_status, ->(status) { where(status: status) if status }
