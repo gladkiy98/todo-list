@@ -16,26 +16,22 @@
       <%= f.submit %>
     <% end %>
   </div>
-  <% if @tasks.empty? %>
-    <span class='text-warning'>There are no tasks!</span>
-  <% else %>
-    <div class='row col-md-12 sortable' id='container'>
-      <%= render partial: 'task', locals: { tasks: @tasks } %>
+  <div class='row col-md-12 sortable' id='container'>
+    <%= render partial: 'task', locals: { tasks: @tasks } %>
+  </div>
+  <div class='row w-100 text-center pad-top-8'>
+    <div class='col-md-3'>
+      <p class='text-left' id='num'><%= pluralize @active_counte, 'item' %> left</p>
     </div>
-    <div class='row w-100 text-center pad-top-8'>
-      <div class='col-md-3'>
-        <p class='text-left' id='num'><%= pluralize @active_counte, 'item' %> left</p>
-      </div>
-      <div class='col-md-6'>
-        <%= link_to 'all', root_path, 'data-attribute': 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>
-        <%= link_to 'Active', root_path(@tasks, status: 0), 'data-attribute': 'btn-status-0', class: 'btn btn-sm btn-outline-secondary', remote: true %>
-        <%= link_to 'Completed', root_path(@tasks, status: 1), 'data-attribute': 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
-      </div>
-      <div class='col-md-3'>
-        <%= link_to 'Clear completed', new_completed_task_path, remote: true, class: 'badge badge-light' %>
-      </div>
+    <div class='col-md-6'>
+      <%= link_to 'all', root_path, 'data-attribute': 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>
+      <%= link_to 'Active', root_path(@tasks, status: 0), 'data-attribute': 'btn-status-0', class: 'btn btn-sm btn-outline-secondary', remote: true %>
+      <%= link_to 'Completed', root_path(@tasks, status: 1), 'data-attribute': 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
     </div>
-  <% end %>
+    <div class='col-md-3'>
+      <%= link_to 'Clear completed', new_completed_task_path, remote: true, class: 'badge badge-light' %>
+    </div>
+  </div>
 </div>
 <div class='line1'></div>
 <div class='line2'></div>
