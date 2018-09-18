@@ -1,8 +1,7 @@
 language: ruby
 rvm:
  - 2.5.1
- - rails
 
- script:
+ before_script:
   - bundle exec rubocop
   - rspec spec
