@@ -1,7 +1,14 @@
+require: 'rubocop-rspec'
+
 AllCops:
+  TargetRubyVersion: 2.5.1
   Exclude:
-    - spec/**/*
-    - db/schema.rb
     - config/initializers/devise.rb
+    - vendor/**/*
+    - cache/**/*
+    - bundle/**/*
+    - log/**/*
+    - db/**/*
+    - bin/*
 
 inherit_from: .rubocop_todo.yml
