@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ActiveTasksController < ApplicationController
   def index
     current_user.tasks.completed.update_all(status: 0, completed_at: nil)

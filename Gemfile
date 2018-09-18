@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -16,7 +18,7 @@ gem 'popper_js', '~> 1.14.3'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.0'
 gem 'rails_sortable'
-gem 'rubocop', '~> 0.58.2', require: false
+gem 'rubocop', '~> 0.59.1', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'uglifier', '>= 1.3.0'

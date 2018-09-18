@@ -1,20 +1,10 @@
-Style/FrozenStringLiteralComment:
-  Enabled: false
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
-Metrics/MethodLength:
-  Max: 20
+Style/ClassAndModuleChildren:
+ Enabled: false
 Metrics/LineLength:
-  Max: 120
-Style/Lambda:
-  Enabled: false
-Layout/DotPosition:
-  Enabled: false
-Style/Documentation:
-  Enabled: false
+ Max: 120
+Documentation:
+ Enabled: false
 Metrics/BlockLength:
-  Enabled: false
-Metrics/AbcSize:
-  Max: 20
-Style/MixinUsage:
-  Enabled: false
+ Enabled: false
+RSpec/AnyInstance:
+ Enabled: false

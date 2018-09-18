@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CompletedTasksController do
@@ -18,14 +20,14 @@ RSpec.describe CompletedTasksController do
       active_task.reload
     end
 
-    context 'update all' do
+    context 'when update all' do
       it { expect(active_task.status).to eq('completed') }
     end
 
-    context '@tasks' do
+    context 'when @tasks have objects' do
       it do
         get :index, xhr: true
-        expect(assigns(:tasks)).to_not be nil
+        expect(assigns(:tasks)).not_to be nil
       end
     end
   end
@@ -39,7 +41,7 @@ RSpec.describe CompletedTasksController do
       end
     end
 
-    context 'delete all' do
+    context 'when delete all' do
       it { is_expected.to change(Task, :count).by(-1) }
     end
   end

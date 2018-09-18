@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe TasksController do
@@ -12,10 +14,11 @@ RSpec.describe TasksController do
 
   describe '#index' do
     subject { Task.by_status(status) }
+
     before { get :index }
 
     context 'when @task have params' do
-      it { expect(assigns(:task)).to_not be nil }
+      it { expect(assigns(:task)).not_to be nil }
     end
 
     context 'when @tasks with params nil' do
@@ -36,8 +39,9 @@ RSpec.describe TasksController do
       it { is_expected.to include(completed_task) }
     end
 
-    context 'check @active_counte' do
+    context 'when @active_counte have count' do
       subject { assigns(:active_counte) }
+
       before do
         active_task
         completed_task
@@ -85,13 +89,13 @@ RSpec.describe TasksController do
   describe '#destroy' do
     subject { -> { delete :destroy, xhr: true, params: { id: task } } }
 
-    context 'completed task' do
+    context 'when delete completed task' do
       let(:task) { completed_task }
 
       it { is_expected.to change(Task, :count).by(-1) }
     end
 
-    context 'active task' do
+    context 'when delete active task' do
       let(:task) { active_task }
 
       it { is_expected.to change(Task, :count).by(-1) }
