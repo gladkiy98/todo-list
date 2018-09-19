@@ -14,3 +14,4 @@ before_script:
 script:
   - bundle exec rubocop --config .rubocop.yml
   - bundle exec rspec spec
+  - bundle exec brakeman
