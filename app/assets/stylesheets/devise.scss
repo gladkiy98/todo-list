@@ -1,0 +1,20 @@
+.mar-top-100 {
+  margin-top: 100px;
+}
+
+.form-container {
+  background-color: #ffffff;
+  border-radius: 2%;
+  box-shadow: 0px 4px 12px #909090;
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  margin: auto;
+}
+
+.user_email,
+.user_password,
+.user_password_confirmation
+{
+  margin-bottom: 10px;
+}

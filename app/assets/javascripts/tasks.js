@@ -105,7 +105,7 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 
   row.id = ('Task_' + taskId);
   row.setAttribute('data-task-id', taskId);
-  row.className = 'row pad-top-8 task row-task ' + taskStatus;
+  row.className = 'row pt-2 task row-task ' + taskStatus;
   div1.className = 'col-md-9';
   div2.className = 'col-md-3 text-right';
   i.className = 'handle ui-sortable-handle';
@@ -147,6 +147,7 @@ Task.prototype.edit = function() {
     var text = $(this).text();
     var $element = $(e.target);
     var $input = $('<input />').attr({
+      'class': 'w-100 edit-input',
       'type': 'text',
       'id': 'txt_input',
       'data-prev-text': text,
@@ -155,12 +156,15 @@ Task.prototype.edit = function() {
     var prevText = $input.attr('data-prev-text');
     var label = $(e.target).closest('label');
     var row = $element.parents('.row-task');
+    var deleteAction = row.find('.delete-action')
+    deleteAction.removeClass('delete-action');
     $element.removeClass('title-active');
     $element.html($input);
     $input.select();
 
     function save(objLabel, lastText, textNow, taskRow) {
       label.addClass(' title-active');
+      deleteAction.addClass('delete-action');
 
       if (lastText === textNow) return $(objLabel).html(lastText);
 
@@ -176,6 +180,7 @@ Task.prototype.edit = function() {
       if (ev.keyCode === ESCAPE_KEY) {
         $element.html(prevText);
         $element.addClass(' title-active');
+        deleteAction.addClass('delete-action');
         $input.remove();
       };
 

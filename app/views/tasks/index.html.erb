@@ -1,37 +1,37 @@
-<div class='row text-center'>
+<div class='row-fluid text-center'>
   <div class='text-center hero-head h1'>
-     <h1>todos</h1>
+     <p>todos</p>
   </div>
 </div>
-<div class='row content-task'>
-  <div class='row col-md-12 row-text'>
+<div class='row-fluid content-task pl-0 pr-0'>
+  <div class='row-fluid d-flex col-md-12 col-sm-12 col-12 row-create pt-2'>
     <%= link_to '', update_status_url(@active_count), remote: true, class: 'checked-all' %>
     <%= form_for @task, method: :post, remote: true do |f| %>
-      <div class='col-md-9 border-0'>
+      <div class='col-md-8 col-sm-8 col-7 border-0'>
         <%= f.text_field :title, placeholder: 'What needs to be done?', class: 'border-0 input-text', autocomplete: 'off', id: 'input-text' %>
       </div>
-      <div class='col-md-3'>
+      <div class='col-md-4 col-sm-4 col-5 pl-0 pr-0'>
         <%= f.text_field :completed_to, class: 'border-0 input-data datepicker', autocomplete: 'off' %>
       </div>
       <%= f.submit %>
     <% end %>
   </div>
-  <div class='row col-md-12 sortable' id='container'>
+  <div class='row-fluid col-md-12 col-sm-12 col-12 sortable m-0 p-0' id='container'>
     <%= render partial: 'task', locals: { tasks: @tasks } %>
   </div>
-  <div class='row w-100 text-center pad-top-8'>
-    <div class='col-md-3'>
+  <div class='row-fluid d-flex w-100 text-center pt-2 m-0'>
+    <div class='col-md-3 col-sm-3 col-3'>
       <p class='text-left' id='num'><%= pluralize @active_counte, 'item' %> left</p>
     </div>
-    <div class='col-md-6'>
-      <%= link_to 'all', root_path, 'data-attribute': 'btn-status-', class: 'btn btn-sm btn-outline-secondary disabled', remote: true %>
-      <%= link_to 'Active', root_path(@tasks, status: 0), 'data-attribute': 'btn-status-0', class: 'btn btn-sm btn-outline-secondary', remote: true %>
-      <%= link_to 'Completed', root_path(@tasks, status: 1), 'data-attribute': 'btn-status-1', class: 'btn btn-sm btn-outline-secondary', remote: true %>
+    <div class='col-md-6 col-sm-6 col-5'>
+      <%= link_to 'all', root_path, 'data-attribute': 'btn-status-', class: 'btn btn-sm disabled', remote: true %>
+      <%= link_to 'Active', root_path(@tasks, status: 0), 'data-attribute': 'btn-status-0', class: 'btn btn-sm', remote: true %>
+      <%= link_to 'Completed', root_path(@tasks, status: 1), 'data-attribute': 'btn-status-1', class: 'btn btn-sm', remote: true %>
     </div>
-    <div class='col-md-3'>
+    <div class='col-md-3 col-sm-3 col-3 pl-0'>
       <%= link_to 'Clear completed', new_completed_task_path, remote: true, class: 'badge badge-light' %>
     </div>
   </div>
 </div>
-<div class='line1'></div>
-<div class='line2'></div>
+<div class='row-fluid line1'></div>
+<div class='row-fluid line2'></div>

@@ -55,7 +55,6 @@ Rails.application.configure do
   config.assets.quiet = true
 
   Bullet.enable = true
-  Bullet.sentry = true
   Bullet.alert = true
   Bullet.bullet_logger = true
   Bullet.console = true

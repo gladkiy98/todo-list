@@ -2,15 +2,16 @@ body {
   background-color: #eee;
   color: #333;
   margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: sans-serif, verdana, arial, helvetica;
   font-size: 17px;
   line-height: 18px;
+  font-weight: 100;
 }
 
 pre {
