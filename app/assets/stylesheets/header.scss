@@ -9,6 +9,19 @@ header {
   *z-index: 2;
   margin-bottom: 20px;
   overflow: visible;
+  .col-mg-5 {
+    a {
+      background-image: asset-data-url('logout.svg');
+      background-repeat: no-repeat;
+      background-position: center left;
+      display: flex;
+      width: 25px;
+      height: 25px;
+      &:hover {
+        background-image: asset-data-url('logout1.svg');
+      }
+    }
+  }
 }
 
 .navbar .brand {
