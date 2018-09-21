@@ -10,5 +10,6 @@ AllCops:
     - log/**/*
     - db/**/*
     - bin/*
+    - node_modules/**/*
 
 inherit_from: .rubocop_todo.yml

@@ -2,20 +2,21 @@
 <html>
   <head>
     <title>TodoList</title>
-    <%= stylesheet_link_tag    'application', media: 'all'%>
-    <%= javascript_include_tag 'application'%>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header class="navbar justify-content-end">
-      <div class="navbar-inner row pad-9">
-        <span class="col-mg-7 pad-rig-20">Hi, <%= link_to current_user.email, edit_user_registration_path %></span>
-        <div class="col-mg-5">
-          <%= link_to '', destroy_user_session_path, data: { confirm: "Are you sure?" }, method: :delete %>
+    <header class='navbar justify-content-end'>
+      <div class='navbar-inner row pad-9'>
+        <span class='col-mg-7 pad-rig-20'>Hi, <%= link_to current_user.email, edit_user_registration_path %></span>
+        <div class='col-mg-5'>
+          <%= link_to '', destroy_user_session_path, data: { confirm: 'Are you sure?' }, method: :delete %>
         </div>
       </div>
     </header>
-    <div class="container-fluid">
+    <div class='container-fluid'>
       <%= yield%>
     </div>
   </body>

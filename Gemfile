@@ -18,10 +18,13 @@ gem 'popper_js', '~> 1.14.3'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.0'
 gem 'rails_sortable'
+gem 'react-rails'
+gem 'rollbar'
 gem 'rubocop', '~> 0.59.1', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'uglifier', '>= 1.3.0'
+gem 'webpacker'
 
 group :production do
   gem 'pg', '~> 0.21.0'
