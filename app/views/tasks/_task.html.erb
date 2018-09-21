@@ -1,12 +1,14 @@
 <% tasks.each do |task| %>
-  <div id='<%= task.sortable_id %>' data-task-id='<%= task.id %>' class='row pad-top-8 task row-task <%= task.status %>'>
-    <div class='col-md-9'>
+  <div id='<%= task.sortable_id %>' data-task-id='<%= task.id %>' class='row-fluid pt-2 task row-task <%= task.status %>'>
+    <div class='col-md-auto col-sm-auto col-auto pr-0'>
       <i class='handle'></i>
       <%= check_box_tag 'status', value = task.status, checked = task.completed?, options = { id: "checked_#{task.id}", class: "checkbox-status-#{task.status}" } %>
       <%= label_tag "checked_#{task.id}", '', class: 'check' %>
-      <%= label_tag '', "#{task.title}", class: "completed-action title-#{task.status}", data: { toggle: 'tooltip', placement: 'top' }, title: "#{task.completed_at&.localtime&.strftime("%e %b %Y %H:%M")}" %>
     </div>
-    <div class='col-md-3 text-right'>
+    <div class="col-md-10 col-sm-10 col-10 p-0 word-break">
+      <%= label_tag '', "#{task.title}", class: "completed-action w-100 title-#{task.status}", data: { toggle: 'tooltip', placement: 'top' }, title: "#{task.completed_at&.localtime&.strftime("%e %b %Y %H:%M")}" %>
+    </div>
+    <div class='col-md-auto col-sm-auto col-auto text-right'>
       <%= link_to '', task_path(task), method: :delete, remote: true,  data: { confirm: 'Are you sure?' }, class: 'action delete-action' %>
     </div>
   </div>

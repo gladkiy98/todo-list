@@ -96,6 +96,7 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   var row = document.createElement('div');
   var div1 = document.createElement('div');
   var div2 = document.createElement('div');
+  var div3 = document.createElement('div');
   var checkBox = document.createElement('input');
   var i = document.createElement('i');
   var labelCheck = document.createElement('label');
@@ -105,9 +106,10 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
 
   row.id = ('Task_' + taskId);
   row.setAttribute('data-task-id', taskId);
-  row.className = 'row pad-top-8 task row-task ' + taskStatus;
-  div1.className = 'col-md-9';
-  div2.className = 'col-md-3 text-right';
+  row.className = 'row pt-2 task row-task ' + taskStatus;
+  div1.className = 'col-md-auto col-sm-auto col-auto pr-0';
+  div2.className = 'col-md-10 col-sm-10 col-10 p-0 word-break';
+  div3.className = 'col-md-auto col-sm-auto col-auto text-right';
   i.className = 'handle ui-sortable-handle';
   checkBox.type = 'checkbox';
   checkBox.name = 'status';
@@ -116,7 +118,7 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   checkBox.className = 'checkbox-status-' + taskStatus;
   labelCheck.className = 'check';
   labelCheck.setAttribute('for', 'checked_' + taskId);
-  label.className = 'completed-action title-' + taskStatus;
+  label.className = 'completed-action w-100 title-' + taskStatus;
   label.setAttribute('data-toggle', 'tooltip');
   label.setAttribute('data-placement', 'top');
   linkDelete.href = taskUrl;
@@ -129,11 +131,12 @@ Task.prototype.create = function(taskId, taskTitle, taskStatus, taskUrl) {
   div1.append(i);
   div1.append(checkBox);
   div1.append(labelCheck);
-  div1.append(label);
+  div2.append(label);
 
-  div2.append(linkDelete);
+  div3.append(linkDelete);
   row.append(div1);
   row.append(div2);
+  row.append(div3);
 
   $('#container').prepend(row);
 
@@ -147,6 +150,7 @@ Task.prototype.edit = function() {
     var text = $(this).text();
     var $element = $(e.target);
     var $input = $('<input />').attr({
+      'class': 'w-100 edit-input',
       'type': 'text',
       'id': 'txt_input',
       'data-prev-text': text,
@@ -155,12 +159,15 @@ Task.prototype.edit = function() {
     var prevText = $input.attr('data-prev-text');
     var label = $(e.target).closest('label');
     var row = $element.parents('.row-task');
+    var deleteAction = row.find('.delete-action')
+    deleteAction.removeClass('delete-action');
     $element.removeClass('title-active');
     $element.html($input);
     $input.select();
 
     function save(objLabel, lastText, textNow, taskRow) {
       label.addClass(' title-active');
+      deleteAction.addClass('delete-action');
 
       if (lastText === textNow) return $(objLabel).html(lastText);
 
@@ -176,6 +183,7 @@ Task.prototype.edit = function() {
       if (ev.keyCode === ESCAPE_KEY) {
         $element.html(prevText);
         $element.addClass(' title-active');
+        deleteAction.addClass('delete-action');
         $input.remove();
       };
 
