@@ -1,10 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
 
 class Title extends React.Component {
   render() {
-    return <h1 className='text-center h1'>Todo-list</h1>
+    return <p className='text-center h1'>Todo-list</p>
   }
 }
 
-export default Title;
+export default Title
