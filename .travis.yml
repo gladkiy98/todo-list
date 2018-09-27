@@ -10,8 +10,10 @@ before_script:
   - bundle install
   - bundle exec rake db:create
   - bundle exec rake db:migrate
+  - npm install
 
 script:
   - bundle exec rubocop --config .rubocop.yml
   - bundle exec rspec spec
   - bundle exec brakeman
+  - yarn run lint
