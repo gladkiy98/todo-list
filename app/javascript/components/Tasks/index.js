@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from './title'
+import Title from '../Title'
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class Tasks extends React.Component {
             <label className={`completed-action w-100 title-${task.status}`}>{task.title}</label>
           </div>
           <div className="col-md-auto col-sm-auto col-auto text-right">
-            <a dataconfirm="Are you sure?" onClick={this.deleteTask(i, task)} className="action delete-action" />
+            <a id={`data_${task.id}`} dataconfirm="Are you sure?" onClick={this.deleteTask(i, task)} className="action delete-action"></a>
           </div>
         </div>
       )
@@ -59,7 +59,7 @@ class Tasks extends React.Component {
               <div className='col-md-4 col-sm-4 col-5 pl-0 pr-0'>
                 <input className="border-0 input-data datepicker" autoComplete="off" type="text"></input>
               </div>
-              <input className='invisible d-none' type="submit" onClick={this.createHandler} />
+              <input className='invisible d-none' type="submit" />
             </form>
           </div>
           {this.renderTasks()}

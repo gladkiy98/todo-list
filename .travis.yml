@@ -17,3 +17,4 @@ script:
   - bundle exec rspec spec
   - bundle exec brakeman
   - yarn run lint
+  - yarn jest
