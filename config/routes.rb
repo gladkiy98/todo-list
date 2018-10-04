@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tasks, only: %i[index create update destroy]
+
+      resources :active_tasks, only: %i[index update]
+
+      resources :completed_tasks, only: %i[index new update]
     end
   end
 end
