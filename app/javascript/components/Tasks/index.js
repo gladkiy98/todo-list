@@ -11,12 +11,12 @@ class Tasks extends React.Component {
   }
 
   componentDidMount() {
-    this.request('tasks')()
+    this.request('tasks')
       .then((response) => response.json())
       .then((tasks) => this.setState({ tasks }))
   }
 
-  request = (url, params={}, options={}) => () => fetch(`/api/v1/${url}`, params, options)
+  request = (url, params={}, options={}) => fetch(`/api/v1/${url}`, params, options)
 
   updateStatusTask = (task, index) => () => {
     const newStatus = {
@@ -24,7 +24,7 @@ class Tasks extends React.Component {
       completed: 'active'
     }
 
-    this.request(`${newStatus[task.status]}_tasks/${task.id}`, { method: 'PUT' })()
+    this.request(`${newStatus[task.status]}_tasks/${task.id}`, { method: 'PUT' })
       .then((response) => {
         if (response.status === 200) {
           this.setState((prevState) => {
@@ -39,7 +39,7 @@ class Tasks extends React.Component {
     const row = this.state.tasks
     row.splice(i, 1)
     this.setState({ tasks: row })
-    this.request(`tasks/${task.id}`, { method: 'DELETE' })()
+    this.request(`tasks/${task.id}`, { method: 'DELETE' })
   }
 
 
