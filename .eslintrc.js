@@ -36,6 +36,10 @@ module.exports = {
         "semi": [
             "error",
             "never"
+        ],
+        "jsx-quotes": [
+            "error",
+            "prefer-single"
         ]
     }
 };
