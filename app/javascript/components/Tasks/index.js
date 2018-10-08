@@ -16,9 +16,7 @@ class Tasks extends React.Component {
       .then((tasks) => this.setState({ tasks }))
   }
 
-  request = (url, params={}, options={}) => () => {
-    return fetch(`/api/v1/${url}`, params, options)
-  }
+  request = (url, params={}, options={}) => () => fetch(`/api/v1/${url}`, params, options)
 
   updateStatusTask = (task, index) => () => {
     const newStatus = {
@@ -31,7 +29,7 @@ class Tasks extends React.Component {
         if (response.status === 200) {
           this.setState((prevState) => {
             prevState.tasks[index].status = newStatus[task.status]
-            return prevState
+            return { tasks: [...prevState.tasks] }
           })
         }
       })
