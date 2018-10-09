@@ -6,6 +6,10 @@ class Api::V1::TasksController < Api::ReactAppController
     render json: tasks
   end
 
+  def create
+    render json: current_user.tasks.create(task_params)
+  end
+
   def destroy
     render json: task.destroy
   end

@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def task
     current_user.tasks.find(params[:id])
   end
+
+  def task_params
+    params.require(:task).permit(%i[title completed_to])
+  end
 end

@@ -1,0 +1,48 @@
+class Api {
+  baseOptions = (method) => {
+    return {
+      method,
+      headers: { 'Content-Type': 'application/json' }
+    }
+  }
+
+  checkStatus = (resp) => {
+    if (resp.status === 200) return resp
+
+    const error = new Error(`${resp.status} ${resp.statusText}`)
+    error.response = resp
+    throw error
+  }
+
+  parseResp = (resp) => resp.json()
+
+  getOptions = () => {
+    return this.baseOptions('GET')
+  }
+
+  reqOptions = (method, body) => {
+    return { ...this.baseOptions(method), body: JSON.stringify(body) }
+  }
+
+  baseFetch(url, options) {
+    return fetch(`/api/v1/${url}`, options).then(this.checkStatus).then(this.parseResp)
+  }
+
+  get(url) {
+    return this.baseFetch(url, this.getOptions())
+  }
+
+  post(url, params) {
+    return this.baseFetch(url, this.reqOptions('POST', params))
+  }
+
+  put(url, params={}) {
+    return this.baseFetch(url, this.reqOptions('PUT', params))
+  }
+
+  destroy(url) {
+    return this.baseFetch(url, this.reqOptions('DELETE'))
+  }
+}
+
+export default new Api()

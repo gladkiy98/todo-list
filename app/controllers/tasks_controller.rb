@@ -24,10 +24,4 @@ class TasksController < ApplicationController
       format.js
     end
   end
-
-  private
-
-  def task_params
-    params.require(:task).permit(%i[title completed_to])
-  end
 end

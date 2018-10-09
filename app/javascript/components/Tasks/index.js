@@ -1,22 +1,61 @@
 import React from 'react'
 import Title from '../Title'
+import { isEmpty } from 'lodash'
+import api from '../lib/requestApi'
 
 class Tasks extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      tasks: []
+      tasks: [],
+      title: '',
+      completed_to: '',
+      errors: {}
     }
   }
 
-  componentDidMount() {
-    this.request('tasks')
-      .then((response) => response.json())
-      .then((tasks) => this.setState({ tasks }))
-  }
+  componentDidMount() { api.get('tasks').then((tasks) => this.setState({ tasks })) }
 
-  request = (url, params={}, options={}) => fetch(`/api/v1/${url}`, params, options)
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value })
+
+  validation = () => {
+    const { title, completed_to } = this.state
+    const errors = {}
+    let formIsValid = true
+
+    if (isEmpty(title)) {
+      formIsValid = false
+      errors.title = 'Title cannot be empty'
+    }
+
+    if (isEmpty(completed_to)) {
+      formIsValid = false
+      errors.completed_to = 'Date cannot be emty'
+    }
+
+    this.setState({ errors })
+    return formIsValid
+  };
+
+  createTask = (e) => {
+    e.preventDefault()
+    if (this.validation()) {
+      let task = {
+        title: this.state.title,
+        completed_to: this.state.completed_to
+      }
+
+      api.post('tasks', task)
+        .then((task) => {
+          this.setState(prevState => ({
+            tasks: [...prevState.tasks, task],
+            title: '',
+            completed_to: ''
+          }))
+        })
+    }
+  }
 
   updateStatusTask = (task, index) => () => {
     const newStatus = {
@@ -24,14 +63,12 @@ class Tasks extends React.Component {
       completed: 'active'
     }
 
-    this.request(`${newStatus[task.status]}_tasks/${task.id}`, { method: 'PUT' })
-      .then((response) => {
-        if (response.status === 200) {
-          this.setState((prevState) => {
-            prevState.tasks[index].status = newStatus[task.status]
-            return { tasks: [...prevState.tasks] }
-          })
-        }
+    api.put(`${newStatus[task.status]}_tasks/${task.id}`)
+      .then(() => {
+        this.setState((prevState) => {
+          prevState.tasks[index].status = newStatus[task.status]
+          return { tasks: [...prevState.tasks] }
+        })
       })
   }
 
@@ -39,7 +76,7 @@ class Tasks extends React.Component {
     const row = this.state.tasks
     row.splice(i, 1)
     this.setState({ tasks: row })
-    this.request(`tasks/${task.id}`, { method: 'DELETE' })
+    api.destroy(`tasks/${task.id}`)
   }
 
 
@@ -72,14 +109,14 @@ class Tasks extends React.Component {
         <div className='row-fluid content-task pl-0 pr-0'>
           <div className='row-fluid d-flex col-md-12 col-sm-12 col-12 row-create pt-2'>
             <a className='checked-all' />
-            <form>
+            <form id='form'>
               <div className='col-md-8 col-sm-8 col-7 border-0'>
-                <input placeholder='What needs to be done?' className='border-0 input-text' type='text' name='title' autoComplete='off' ></input>
+                <input placeholder='What needs to be done?' className='border-0 input-text' type='text' name='title' autoComplete='off' value={this.state.title} onChange={this.handleChange}></input>
               </div>
               <div className='col-md-4 col-sm-4 col-5 pl-0 pr-0'>
-                <input className='border-0 input-data datepicker' type='date' autoComplete='off' name='completed_to' ></input>
+                <input className='border-0 input-data datepicker' type='date' autoComplete='off' name='completed_to' value={this.state.completed_to} onChange={this.handleChange}></input>
               </div>
-              <input className='invisible d-none' type='submit' />
+              <input className='invisible d-none' type='submit' onClick={this.createTask} />
             </form>
           </div>
           {this.renderTasks()}
