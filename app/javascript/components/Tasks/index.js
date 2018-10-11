@@ -19,7 +19,7 @@ class Tasks extends React.Component {
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value })
 
-  validation = () => {
+  isValidation = () => {
     const { title, completed_to } = this.state
     const errors = {}
     let formIsValid = true
@@ -40,13 +40,10 @@ class Tasks extends React.Component {
 
   createTask = (e) => {
     e.preventDefault()
-    if (this.validation()) {
-      let task = {
-        title: this.state.title,
-        completed_to: this.state.completed_to
-      }
+    if (this.isValidation()) {
+      const { title, completed_to } = this.state
 
-      api.post('tasks', task)
+      api.post('tasks', { title, completed_to })
         .then((task) => {
           this.setState(prevState => ({
             tasks: [...prevState.tasks, task],
@@ -109,7 +106,7 @@ class Tasks extends React.Component {
         <div className='row-fluid content-task pl-0 pr-0'>
           <div className='row-fluid d-flex col-md-12 col-sm-12 col-12 row-create pt-2'>
             <a className='checked-all' />
-            <form id='form'>
+            <form>
               <div className='col-md-8 col-sm-8 col-7 border-0'>
                 <input placeholder='What needs to be done?' className='border-0 input-text' type='text' name='title' autoComplete='off' value={this.state.title} onChange={this.handleChange}></input>
               </div>
