@@ -1,7 +1,8 @@
 import React from 'react'
 import Title from '../Title'
-import { isEmpty } from 'lodash'
+import isEmpty from 'lodash.isempty'
 import api from '../lib/requestApi'
+import InlineEdit from '../InlineEdit'
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -38,19 +39,20 @@ class Tasks extends React.Component {
     return formIsValid
   };
 
+  _handleFocusOut = (id, text) => api.put(`tasks/${id}`, { title: text })
+
   createTask = (e) => {
     e.preventDefault()
     if (this.isValidation()) {
       const { title, completed_to } = this.state
 
-      api.post('tasks', { title, completed_to })
-        .then((task) => {
-          this.setState(prevState => ({
-            tasks: [...prevState.tasks, task],
-            title: '',
-            completed_to: ''
-          }))
-        })
+      api.post('tasks', { title, completed_to }).then((task) => {
+        this.setState(prevState => ({
+          tasks: [...prevState.tasks, task],
+          title: '',
+          completed_to: ''
+        }))
+      })
     }
   }
 
@@ -60,13 +62,12 @@ class Tasks extends React.Component {
       completed: 'active'
     }
 
-    api.put(`${newStatus[task.status]}_tasks/${task.id}`)
-      .then(() => {
-        this.setState((prevState) => {
-          prevState.tasks[index].status = newStatus[task.status]
-          return { tasks: [...prevState.tasks] }
-        })
+    api.put(`${newStatus[task.status]}_tasks/${task.id}`).then(() => {
+      this.setState((prevState) => {
+        prevState.tasks[index].status = newStatus[task.status]
+        return { tasks: [...prevState.tasks] }
       })
+    })
   }
 
   deleteTask = (i, task) => () => {
@@ -76,7 +77,6 @@ class Tasks extends React.Component {
     api.destroy(`tasks/${task.id}`)
   }
 
-
   renderTasks = () => {
     const { tasks } = this.state
 
@@ -85,14 +85,32 @@ class Tasks extends React.Component {
         <div className={`row-fluid pt-2 task row-task ${task.status}`} key={i}>
           <div className='col-md-auto col-sm-auto col-auto pr-0'>
             <i className='handle' />
-            <input type='checkbox' value={task.status} defaultChecked={task.status === 'completed'} onChange={this.updateStatusTask(task, i)} name='status' id={`checked_${task.id}`} className={`checkbox-status-${task.status}`} />
+            <input
+              type='checkbox'
+              checked={task.status === 'completed'}
+              onChange={this.updateStatusTask(task, i)}
+              name='status'
+              id={`checked_${task.id}`}
+              className={`checkbox-status-${task.status}`}
+            />
             <label className='check' htmlFor={`checked_${task.id}`} />
           </div>
           <div className='col-md-10 col-sm-10 col-10 p-0 word-break'>
-            <label className={`completed-action w-100 title-${task.status}`}>{task.title}</label>
+            <InlineEdit
+              text={task.title}
+              labelClassName={`completed-action w-100 title-${task.status}`}
+              labelId={task.id}
+              inputDisabled={task.status}
+              onFocusOut={this._handleFocusOut}
+            />
           </div>
           <div className='col-md-auto col-sm-auto col-auto text-right'>
-            <a id={`data_${task.id}`} dataconfirm='Are you sure?' onClick={this.deleteTask(i, task)} className='action delete-action'></a>
+            <a
+              data-confirm='Are you sure?'
+              id={`data_${task.id}`}
+              onClick={this.deleteTask(i, task)}
+              className='action delete-action'
+            />
           </div>
         </div>
       )
@@ -108,10 +126,25 @@ class Tasks extends React.Component {
             <a className='checked-all' />
             <form>
               <div className='col-md-8 col-sm-8 col-7 border-0'>
-                <input placeholder='What needs to be done?' className='border-0 input-text' type='text' name='title' autoComplete='off' value={this.state.title} onChange={this.handleChange}></input>
+                <input
+                  placeholder='What needs to be done?'
+                  className='border-0 input-text'
+                  type='text'
+                  name='title'
+                  autoComplete='off'
+                  value={this.state.title}
+                  onChange={this.handleChange}
+                />
               </div>
               <div className='col-md-4 col-sm-4 col-5 pl-0 pr-0'>
-                <input className='border-0 input-data datepicker' type='date' autoComplete='off' name='completed_to' value={this.state.completed_to} onChange={this.handleChange}></input>
+                <input
+                  className='border-0 input-data datepicker'
+                  type='date'
+                  autoComplete='off'
+                  name='completed_to'
+                  value={this.state.completed_to}
+                  onChange={this.handleChange}
+                />
               </div>
               <input className='invisible d-none' type='submit' onClick={this.createTask} />
             </form>
