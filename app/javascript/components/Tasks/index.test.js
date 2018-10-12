@@ -18,9 +18,40 @@ const wrapper = shallow(<Tasks />)
 describe('Tasks', () => {
   describe('callback', () => {
     it ('componentDidMount', () => {
-      wrapper.instance().componentDidMount()
-
       expect(wrapper.find('div.row-task')).toHaveLength(2)
+    })
+  })
+
+  describe('validation', () => {
+    it('errors', () => {
+      wrapper.find('input.invisible').simulate('click', { preventDefault() {} })
+      expect(wrapper.state('errors')).toEqual({ title: 'Title cannot be empty', completed_to: 'Date cannot be emty' })
+    })
+  })
+
+  describe('handleChange', () => {
+    it('when change input-text', () => {
+      wrapper.find('.input-text').simulate('change', { target: { name: 'title', value: 'new value' } })
+      expect(wrapper.state('title')).toEqual('new value')
+    })
+
+    it('when change input-data', () => {
+      wrapper.find('.input-data').simulate('change', { target: { name: 'completed_to', value: '10-24-2018' } })
+      expect(wrapper.state('completed_to')).toEqual('10-24-2018')
+    })
+  })
+
+  describe('create', () => {
+    beforeAll(() => {
+      fetchMock.post('/api/v1/tasks', { id: 3, title: 'new task', status: 'active', completed_to: '24-10-2018' })
+      wrapper.find('.input-text').simulate('change', { target: { name: 'title', value: 'new value' } })
+      wrapper.find('.input-data').simulate('change', { target: { name: 'completed_to', value: '10-24-2018' } })
+      wrapper.find('input.invisible').simulate('click', { preventDefault: () => {} })
+      wrapper.update(<Tasks />)
+    })
+
+    it('when valid params', () => {
+      expect(wrapper.state('tasks')[2].title).toBe('new task')
     })
   })
 
@@ -52,6 +83,6 @@ describe('Tasks', () => {
     fetchMock.delete('/api/v1/tasks/2', {})
     wrapper.find('#data_2').simulate('click')
 
-    expect(wrapper.find('div.row-task')).toHaveLength(1)
+    expect(wrapper.find('div.row-task')).toHaveLength(2)
   })
 })
