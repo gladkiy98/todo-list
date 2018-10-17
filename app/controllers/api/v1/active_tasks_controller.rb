@@ -2,6 +2,6 @@
 
 class Api::V1::ActiveTasksController < Api::ReactAppController
   def update
-    render json: task.update_attributes(completed_at: nil, status: 0)
+    render json: task.update_attributes(completed_at: nil, status: 0), status: :ok
   end
 end
