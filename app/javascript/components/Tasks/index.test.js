@@ -79,10 +79,46 @@ describe('Tasks', () => {
     })
   })
 
-  it ('click on delete', () => {
-    fetchMock.delete('/api/v1/tasks/2', {})
-    wrapper.find('#data_2').simulate('click')
+
+  it ('clear completed task', () => {
+    fetchMock.get('/api/v1/completed_tasks/new', {})
+    wrapper.find('.badge-light').simulate('click')
 
     expect(wrapper.find('div.row-task')).toHaveLength(2)
+  })
+
+  it ('check count active tasks', () => {
+    expect(wrapper.state('activeTask')).toBe('2 items left')
+  })
+
+  it ('click on delete', () => {
+    fetchMock.delete('/api/v1/tasks/3', {})
+    wrapper.find('#data_3').simulate('click')
+
+    expect(wrapper.find('div.row-task')).toHaveLength(1)
+  })
+
+  describe('checkAll', () => {
+    beforeAll(() => {
+      fetchMock.get('/api/v1/completed_tasks', [tasks[0]])
+      wrapper.find('.checked-all').simulate('click')
+      wrapper.update(<Tasks />)
+    })
+
+    it ('when 1 active task', () => {
+      expect(wrapper.state('tasks')[0].status).toBe('completed')
+    })
+  })
+
+  describe('checkAll', () => {
+    beforeAll(() => {
+      fetchMock.get('/api/v1/active_tasks', [{ id: 1, title: 'completed task', status: 'active' }])
+      wrapper.find('.checked-all').simulate('click')
+      wrapper.update(<Tasks />)
+    })
+
+    it ('when 1 completed task', () => {
+      expect(wrapper.state('tasks')[0].status).toBe('active')
+    })
   })
 })
