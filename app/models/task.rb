@@ -7,7 +7,7 @@ class Task < ApplicationRecord
 
   set_sortable :sort
   enum status: %i[active completed]
-  scope :by_status, ->(status) { where(status: status) if status }
+  scope :by_status, ->(status) { where(status: status) if status.present? }
 
   before_update :disable_edit_on_completed
 
