@@ -125,7 +125,7 @@ describe('Tasks', () => {
   describe('filter button', () => {
     beforeAll (() => {
       fetchMock.get('/api/v1/tasks?status=1', [])
-      wrapper.find('a[data-index="1"]').simulate('click')
+      wrapper.find('a[children="Completed"]').simulate('click')
       wrapper.update(<Tasks />)
     })
 
@@ -137,7 +137,7 @@ describe('Tasks', () => {
   describe('filter button', () => {
     beforeAll (() => {
       fetchMock.get('/api/v1/tasks?status=0', [tasks[1]])
-      wrapper.find('a[data-index="0"]').simulate('click')
+      wrapper.find('a[children="Active"]').simulate('click')
       wrapper.update(<Tasks />)
     })
 
@@ -149,7 +149,7 @@ describe('Tasks', () => {
   describe('filter button', () => {
     beforeAll (() => {
       fetchMock.get('/api/v1/tasks?status=', tasks)
-      wrapper.find('a[data-index=""]').simulate('click')
+      wrapper.find('a[children="All"]').simulate('click')
       wrapper.update(<Tasks />)
     })
 

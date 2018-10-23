@@ -202,9 +202,9 @@ class Tasks extends React.Component {
               <p className='text-left'>{activeTaskCount}</p>
             </div>
             <div className='col-md-6 col-sm-6 col-5'>
-              <a className='btn btn-sm' data-index='' onClick={this.filterButton()}>All</a>
-              <a className='btn btn-sm' data-index='0' onClick={this.filterButton('0')}>Active</a>
-              <a className='btn btn-sm' data-index='1' onClick={this.filterButton('1')}>Completed</a>
+              <a className='btn btn-sm' onClick={this.filterButton()}>All</a>
+              <a className='btn btn-sm' onClick={this.filterButton(0)}>Active</a>
+              <a className='btn btn-sm' onClick={this.filterButton(1)}>Completed</a>
             </div>
             <div className='col-md-3 col-sm-3 col-3 pl-0'>
               <a className='badge badge-light' onClick={this.deleteCompletedTask}>Clear completed</a>
