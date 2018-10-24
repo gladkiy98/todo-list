@@ -13,14 +13,14 @@ class Tasks extends React.Component {
       title: '',
       completed_to: '',
       errors: {},
-      activeTask: ''
+      activeTaskCount: ''
     }
   }
 
   componentDidMount() {
     api.get('tasks').then((tasks) => this.setState({
       tasks,
-      activeTask: this.handleItemLeft(tasks)
+      activeTaskCount: this.handleItemLeft(tasks)
     }))
   }
 
@@ -65,7 +65,7 @@ class Tasks extends React.Component {
       api.post('tasks', { title, completed_to }).then((task) => {
         this.setState(prevState => ({
           tasks: [...prevState.tasks, task],
-          activeTask: this.handleItemLeft([...prevState.tasks, task]),
+          activeTaskCount: this.handleItemLeft([...prevState.tasks, task]),
           title: '',
           completed_to: ''
         }))
@@ -84,7 +84,7 @@ class Tasks extends React.Component {
         prevState.tasks[index].status = newStatus[task.status]
         return {
           tasks: [...prevState.tasks],
-          activeTask: this.handleItemLeft(this.state.tasks)
+          activeTaskCount: this.handleItemLeft(this.state.tasks)
         }
       })
     })
@@ -97,7 +97,7 @@ class Tasks extends React.Component {
 
     api.get(url).then((tasks) => this.setState({
       tasks,
-      activeTask: this.handleItemLeft(tasks)
+      activeTaskCount: this.handleItemLeft(tasks)
     }))
   }
 
@@ -106,16 +106,20 @@ class Tasks extends React.Component {
     row.splice(i, 1)
     this.setState({
       tasks: row,
-      activeTask: this.handleItemLeft(row)
+      activeTaskCount: this.handleItemLeft(row)
     })
     api.destroy(`tasks/${task.id}`)
   }
 
   deleteCompletedTask = () => {
     const { tasks } = this.state
-    const activeTask = this.filterState(tasks, 'active')
-    this.setState({ tasks: activeTask })
+    const activeTasks = this.filterState(tasks, 'active')
+    this.setState({ tasks: activeTasks })
     api.get('completed_tasks/new')
+  }
+
+  filterButton = (params='') => () => {
+    api.get(`tasks?status=${params}`).then((tasks) => this.setState({ tasks }))
   }
 
   renderTasks = () => {
@@ -159,7 +163,7 @@ class Tasks extends React.Component {
   }
 
   render() {
-    const { title, completed_to, activeTask } = this.state
+    const { title, completed_to, activeTaskCount } = this.state
 
     return (
       <div>
@@ -195,12 +199,12 @@ class Tasks extends React.Component {
           {this.renderTasks()}
           <div className='row-fluid d-flex w-100 text-center pt-2 m-0'>
             <div className='col-md-3 col-sm-3 col-3'>
-              <p className='text-left'>{activeTask}</p>
+              <p className='text-left'>{activeTaskCount}</p>
             </div>
             <div className='col-md-6 col-sm-6 col-5'>
-              <a className='btn btn-sm disabled'>All</a>
-              <a className='btn btn-sm'>Active</a>
-              <a className='btn btn-sm'>Completed</a>
+              <a className='btn btn-sm' onClick={this.filterButton()}>All</a>
+              <a className='btn btn-sm' onClick={this.filterButton(0)}>Active</a>
+              <a className='btn btn-sm' onClick={this.filterButton(1)}>Completed</a>
             </div>
             <div className='col-md-3 col-sm-3 col-3 pl-0'>
               <a className='badge badge-light' onClick={this.deleteCompletedTask}>Clear completed</a>

@@ -88,7 +88,7 @@ describe('Tasks', () => {
   })
 
   it ('check count active tasks', () => {
-    expect(wrapper.state('activeTask')).toBe('2 items left')
+    expect(wrapper.state('activeTaskCount')).toBe('2 items left')
   })
 
   it ('click on delete', () => {
@@ -119,6 +119,42 @@ describe('Tasks', () => {
 
     it ('when 1 completed task', () => {
       expect(wrapper.state('tasks')[0].status).toBe('active')
+    })
+  })
+
+  describe('filter button', () => {
+    beforeAll (() => {
+      fetchMock.get('/api/v1/tasks?status=1', [])
+      wrapper.find('a[children="Completed"]').simulate('click')
+      wrapper.update(<Tasks />)
+    })
+
+    it ('completed', () => {
+      expect(wrapper.state('tasks')).toEqual([])
+    })
+  })
+
+  describe('filter button', () => {
+    beforeAll (() => {
+      fetchMock.get('/api/v1/tasks?status=0', [tasks[1]])
+      wrapper.find('a[children="Active"]').simulate('click')
+      wrapper.update(<Tasks />)
+    })
+
+    it ('active', () => {
+      expect(wrapper.state('tasks')).toEqual([tasks[1]])
+    })
+  })
+
+  describe('filter button', () => {
+    beforeAll (() => {
+      fetchMock.get('/api/v1/tasks?status=', tasks)
+      wrapper.find('a[children="All"]').simulate('click')
+      wrapper.update(<Tasks />)
+    })
+
+    it ('all', () => {
+      expect(wrapper.state('tasks')).toEqual(tasks)
     })
   })
 })
