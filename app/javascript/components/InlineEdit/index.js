@@ -56,7 +56,7 @@ export default class InlineEdit extends React.Component {
       <input
         type='text'
         className={this.props.inputClassName}
-        ref={(input) => (this.textInput = input) }
+        ref={(input) => (this.textInput = input)}
         value={this.state.text}
         onChange={this._handleChange}
         onKeyPress={this._handleEvent}
