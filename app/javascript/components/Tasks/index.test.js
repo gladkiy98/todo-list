@@ -3,6 +3,7 @@ import Tasks from './index'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import fetchMock from 'fetch-mock'
+import moment from 'moment'
 
 configure({ adapter: new Adapter() })
 
@@ -34,18 +35,13 @@ describe('Tasks', () => {
       wrapper.find('.input-text').simulate('change', { target: { name: 'title', value: 'new value' } })
       expect(wrapper.state('title')).toEqual('new value')
     })
-
-    it('when change input-data', () => {
-      wrapper.find('.input-data').simulate('change', { target: { name: 'completed_to', value: '10-24-2018' } })
-      expect(wrapper.state('completed_to')).toEqual('10-24-2018')
-    })
   })
 
   describe('create', () => {
     beforeAll(() => {
       fetchMock.post('/api/v1/tasks', { id: 3, title: 'new task', status: 'active', completed_to: '24-10-2018' })
       wrapper.find('.input-text').simulate('change', { target: { name: 'title', value: 'new value' } })
-      wrapper.find('.input-data').simulate('change', { target: { name: 'completed_to', value: '10-24-2018' } })
+      wrapper.setState({ completed_to: moment() })
       wrapper.find('input.invisible').simulate('click', { preventDefault: () => {} })
       wrapper.update(<Tasks />)
     })

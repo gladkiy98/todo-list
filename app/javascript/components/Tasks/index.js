@@ -3,6 +3,8 @@ import Title from '../Title'
 import isEmpty from 'lodash.isempty'
 import api from '../lib/requestApi'
 import InlineEdit from '../InlineEdit'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class Tasks extends React.Component {
     this.state = {
       tasks: [],
       title: '',
-      completed_to: '',
+      completed_to: null,
       errors: {},
       activeTaskCount: ''
     }
@@ -24,7 +26,9 @@ class Tasks extends React.Component {
     }))
   }
 
-  handleChange = (e) => this.setState({ [e.target.name]: e.target.value })
+  handleChangeText = (e) => this.setState({ [e.target.name]: e.target.value })
+
+  handleChangeDate = (date) => this.setState({ completed_to: date })
 
   handleFocusOut = (id, text) => api.put(`tasks/${id}`, { title: text })
 
@@ -66,9 +70,9 @@ class Tasks extends React.Component {
         this.setState(prevState => ({
           tasks: [...prevState.tasks, task],
           activeTaskCount: this.handleItemLeft([...prevState.tasks, task]),
-          title: '',
-          completed_to: ''
+          title: ''
         }))
+        this.inputDate.clear()
       })
     }
   }
@@ -180,17 +184,18 @@ class Tasks extends React.Component {
                   name='title'
                   autoComplete='off'
                   value={title}
-                  onChange={this.handleChange}
+                  onChange={this.handleChangeText}
                 />
               </div>
               <div className='col-md-4 col-sm-4 col-5 pl-0 pr-0'>
-                <input
-                  className='border-0 input-data datepicker'
-                  type='date'
-                  autoComplete='off'
-                  name='completed_to'
-                  value={completed_to}
-                  onChange={this.handleChange}
+                <DatePicker
+                  ref={(input) => (this.inputDate = input)}
+                  className='border-0 input-data'
+                  placeholderText='Click to select a date'
+                  dateFormat='DD/MM/YYYY'
+                  minDate={moment()}
+                  selected={completed_to}
+                  onChange={this.handleChangeDate}
                 />
               </div>
               <input className='invisible d-none' type='submit' onClick={this.createTask} />
