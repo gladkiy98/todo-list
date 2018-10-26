@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ReactTooltip from 'react-tooltip'
 
 const escKey = 27
 const enterKey = 13
@@ -68,7 +69,18 @@ export default class InlineEdit extends React.Component {
   }
 
   render() {
-    const label = <label className={this.props.labelClassName} onClick={this._handleFocus}>{this.state.text}</label>
+    const label = (
+      <div>
+        <label
+          data-tip={this.props.labelTooltip || ''}
+          className={this.props.labelClassName}
+          onClick={this._handleFocus}
+        >
+          {this.state.text}
+        </label>
+        <ReactTooltip />
+      </div>
+    )
 
     return this.state.isEditing && this._editInput() || label
   }
@@ -78,6 +90,7 @@ InlineEdit.propTypes = {
   text: PropTypes.string.isRequired,
   labelClassName: PropTypes.string,
   labelId: PropTypes.number,
+  labelTooltip: PropTypes.string,
   inputTabIndex: PropTypes.number,
   inputClassName: PropTypes.string,
   inputDisabled: PropTypes.string,
