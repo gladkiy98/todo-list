@@ -2,7 +2,10 @@ class Api {
   baseOptions = (method) => {
     return {
       method,
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.getElementsByTagName('meta')[1].content
+      }
     }
   }
 
@@ -28,12 +31,20 @@ class Api {
     return fetch(`/api/v1/${url}`, options).then(this.checkStatus).then(this.parseResp)
   }
 
+  sortFetch(url, options) {
+    return fetch(url, options)
+  }
+
   get(url) {
     return this.baseFetch(url, this.getOptions())
   }
 
   post(url, params) {
     return this.baseFetch(url, this.reqOptions('POST', params))
+  }
+
+  postSort(url, params) {
+    return this.sortFetch(url, this.reqOptions('POST', params))
   }
 
   put(url, params={}) {

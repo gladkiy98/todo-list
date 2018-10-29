@@ -1,11 +1,17 @@
 import React from 'react'
 import Tasks from './index'
-import { configure, shallow } from 'enzyme'
+import { configure, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import fetchMock from 'fetch-mock'
 import moment from 'moment'
 
 configure({ adapter: new Adapter() })
+
+document.head.innerHTML =
+'<head>' +
+  '<meta content="qqqweqweqweqwe" />' +
+  '<meta content="sdhfsjkdgsdkfjsd" />' +
+'</head>'
 
 const tasks = [
   { id: 1, title: 'completed task', status: 'completed' },
@@ -14,12 +20,12 @@ const tasks = [
 
 fetchMock.get('/api/v1/tasks', tasks)
 
-const wrapper = shallow(<Tasks />)
+const wrapper = mount(<Tasks />)
 
 describe('Tasks', () => {
   describe('callback', () => {
     it ('componentDidMount', () => {
-      expect(wrapper.find('div.row-task')).toHaveLength(2)
+      expect(wrapper.state('tasks')).toHaveLength(2)
     })
   })
 

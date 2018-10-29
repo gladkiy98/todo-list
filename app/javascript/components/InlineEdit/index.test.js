@@ -17,7 +17,7 @@ describe('inlineEdit', () => {
     })
 
     it ('when edit title', () => {
-      expect(wrapperActiveTask.html()).toBe('<label>new value</label>')
+      expect(wrapperActiveTask.text()).toBe('new value')
     })
   })
 
@@ -27,7 +27,7 @@ describe('inlineEdit', () => {
     })
 
     it ('when edit title', () => {
-      expect(wrapperCompletedTask.html()).toBe('<label>another text</label>')
+      expect(wrapperCompletedTask.text()).toBe('another text')
     })
   })
 })

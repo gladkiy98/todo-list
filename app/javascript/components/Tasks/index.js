@@ -5,6 +5,7 @@ import api from '../lib/requestApi'
 import InlineEdit from '../InlineEdit'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -42,6 +43,13 @@ class Tasks extends React.Component {
     return filteredArray.filter(task => task.status === params)
   }
 
+  reorder = (list, startIndex, endIndex) => {
+    const result = [...list]
+    const [removed] = result.splice(startIndex, 1)
+    result.splice(endIndex, 0, removed)
+    return result
+  }
+
   isValidation = () => {
     const { title, completed_to } = this.state
     const errors = {}
@@ -65,14 +73,13 @@ class Tasks extends React.Component {
     e.preventDefault()
     if (this.isValidation()) {
       const { title, completed_to } = this.state
-
       api.post('tasks', { title, completed_to }).then((task) => {
         this.setState(prevState => ({
           tasks: [...prevState.tasks, task],
           activeTaskCount: this.handleItemLeft([...prevState.tasks, task]),
-          title: ''
+          title: '',
+          completed_to: null
         }))
-        this.inputDate.clear()
       })
     }
   }
@@ -83,9 +90,15 @@ class Tasks extends React.Component {
       completed: 'active'
     }
 
+    const newTime = {
+      active: null,
+      completed: moment().format('D MMM YYYY HH:mm')
+    }
+
     api.put(`${newStatus[task.status]}_tasks/${task.id}`).then(() => {
       this.setState((prevState) => {
         prevState.tasks[index].status = newStatus[task.status]
+        prevState.tasks[index].completed_at = newTime[task.status]
         return {
           tasks: [...prevState.tasks],
           activeTaskCount: this.handleItemLeft(this.state.tasks)
@@ -126,49 +139,74 @@ class Tasks extends React.Component {
     api.get(`tasks?status=${params}`).then((tasks) => this.setState({ tasks }))
   }
 
+  onDragEnd = (result) => {
+    if (isEmpty(result.destination)) return
+
+    const tasks = this.reorder(
+      this.state.tasks,
+      result.source.index,
+      result.destination.index
+    )
+
+    const data = tasks.map((task) => ({ klass: 'Task', id: task.id }))
+
+    this.setState({ tasks })
+
+    api.postSort('sortable/reorder', { rails_sortable: data })
+  }
+
   renderTasks = () => {
     const { tasks } = this.state
-
     return tasks.map((task, i) => {
       return (
-        <div className={`row-fluid pt-2 task row-task ${task.status}`} key={task.id}>
-          <div className='col-md-auto col-sm-auto col-auto pr-0'>
-            <i className='handle' />
-            <input
-              type='checkbox'
-              checked={task.status === 'completed'}
-              onChange={this.updateStatusTask(task, i)}
-              name='status'
-              id={`checked_${task.id}`}
-              className={`checkbox-status-${task.status}`}
-            />
-            <label className='check' htmlFor={`checked_${task.id}`} />
-          </div>
-          <div className='col-md-10 col-sm-10 col-10 p-0 word-break'>
-            <InlineEdit
-              text={task.title}
-              labelClassName={`completed-action w-100 title-${task.status}`}
-              labelId={task.id}
-              inputDisabled={task.status}
-              onFocusOut={this.handleFocusOut}
-            />
-          </div>
-          <div className='col-md-auto col-sm-auto col-auto text-right'>
-            <a
-              data-confirm='Are you sure?'
-              id={`data_${task.id}`}
-              onClick={this.deleteTask(i, task)}
-              className='action delete-action'
-            />
-          </div>
-        </div>
+        <Draggable key={task.id} draggableId={task.id} index={i}>
+          {(provided) => (
+            <div
+              ref={provided.innerRef}
+              className={`row-fluid pt-2 task row-task ${task.status}`}
+              {...provided.dragHandleProps}
+              style={{...provided.draggableProps.style}}
+            >
+              <div className='col-md-auto col-sm-auto col-auto pr-0'>
+                <i className='handle' />
+                <input
+                  type='checkbox'
+                  checked={task.status === 'completed'}
+                  onChange={this.updateStatusTask(task, i)}
+                  name='status'
+                  id={`checked_${task.id}`}
+                  className={`checkbox-status-${task.status}`}
+                />
+                <label className='check' htmlFor={`checked_${task.id}`} />
+              </div>
+              <div className='col-md-10 col-sm-10 col-10 p-0 word-break'>
+                <InlineEdit
+                  text={task.title}
+                  labelClassName={`completed-action w-100 title-${task.status}`}
+                  labelId={task.id}
+                  labelTooltip={task.completed_at}
+                  inputDisabled={task.status}
+                  onFocusOut={this.handleFocusOut}
+                />
+              </div>
+              <div className='col-md-auto col-sm-auto col-auto text-right'>
+                <a
+                  data-confirm='Are you sure?'
+                  id={`data_${task.id}`}
+                  onClick={this.deleteTask(i, task)}
+                  className='action delete-action'
+                />
+              </div>
+              {provided.placeholder}
+            </div>
+          )}
+        </Draggable>
       )
     })
   }
 
   render() {
     const { title, completed_to, activeTaskCount } = this.state
-
     return (
       <div>
         <Title />
@@ -189,7 +227,6 @@ class Tasks extends React.Component {
               </div>
               <div className='col-md-4 col-sm-4 col-5 pl-0 pr-0'>
                 <DatePicker
-                  ref={(input) => (this.inputDate = input)}
                   className='border-0 input-data'
                   placeholderText='Click to select a date'
                   dateFormat='DD/MM/YYYY'
@@ -201,7 +238,15 @@ class Tasks extends React.Component {
               <input className='invisible d-none' type='submit' onClick={this.createTask} />
             </form>
           </div>
-          {this.renderTasks()}
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId='droppable'>
+              {(provided) => (
+                <div ref={provided.innerRef}>
+                  {this.renderTasks()}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
           <div className='row-fluid d-flex w-100 text-center pt-2 m-0'>
             <div className='col-md-3 col-sm-3 col-3'>
               <p className='text-left'>{activeTaskCount}</p>
