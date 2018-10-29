@@ -198,13 +198,13 @@ class Tasks extends React.Component {
                   labelClassName={`completed-action w-100 title-${task.status}`}
                   labelId={task.id}
                   labelTooltip={task.completed_at}
+                  inputClassName={'edit-input'}
                   inputDisabled={task.status}
                   onFocusOut={this.handleFocusOut}
                 />
               </div>
               <div className='col-md-auto col-sm-auto col-auto text-right'>
                 <a
-                  data-confirm='Are you sure?'
                   id={`data_${task.id}`}
                   onClick={this.deleteTask(i, task)}
                   className='action delete-action'
